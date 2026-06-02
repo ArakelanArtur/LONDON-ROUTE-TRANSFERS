@@ -192,6 +192,11 @@ section p {
 
 form {
   max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 32px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
 
 fieldset {
@@ -241,7 +246,7 @@ textarea:focus {
 .form-row {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .form-row > * {
@@ -257,6 +262,23 @@ textarea:focus {
   cursor: pointer;
 }
 
+.field-error {
+  display: block;
+  font-size: 0.8rem;
+  color: #c62828;
+  margin-top: 4px;
+  min-height: 1.2em;
+}
+
+.field-invalid {
+  border-color: #c62828 !important;
+  background: #fff8f8;
+}
+
+.field-valid {
+  border-color: #2e7d32 !important;
+}
+
 .checkbox-label input[type="checkbox"] {
   width: auto;
   margin-top: 3px;
@@ -269,6 +291,9 @@ textarea:focus {
 
 .privacy-note {
   margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
   padding: 24px;
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -304,6 +329,10 @@ small {
   color: #8b7355;
   margin-bottom: 36px;
   line-height: 1.5;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
@@ -389,6 +418,16 @@ footer a:hover {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   margin-bottom: 32px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-block {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .footer-block h3 {
@@ -406,6 +445,7 @@ footer a:hover {
 .footer-block dl {
   display: block;
   text-align: center;
+  padding-left: 50px;
 }
 
 .footer-block dt {
@@ -572,3 +612,257 @@ footer a:hover {
     left: -120px;
   }
 }
+
+#manager {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.mgr-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  gap: 40px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.mgr-header h2 {
+  margin-bottom: 4px;
+}
+
+.mgr-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.mgr-header .subtitle {
+  color: #8b7355;
+  margin: 0;
+}
+
+.mgr-btn {
+  font-family: 'Libre Baskerville', Baskerville, serif;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.mgr-btn--primary {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.mgr-btn--primary:hover {
+  background: #8b7355;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  font-size: 1.3rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.stat-icon--total { background: #f0f0f0; }
+.stat-icon--confirmed { background: #e8f5e9; }
+.stat-icon--pending { background: #fff8e1; }
+.stat-icon--done { background: #e3f2fd; }
+
+.stat-card .num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.stat-card .label {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-bar__inner {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.filter-bar__inner input,
+.filter-bar__inner select {
+  width: auto;
+  min-width: 200px;
+  flex: 1;
+}
+
+.filter-count {
+  font-size: 0.85rem;
+  color: #999;
+  white-space: nowrap;
+}
+
+.table-wrap {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 0.8rem;
+}
+
+.booking-table th {
+  background: #1a1a1a;
+  color: #fff;
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+}
+
+.booking-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.booking-table tr:hover td {
+  background: #fafaf5;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status--confirmed { background: #e8f5e9; color: #2e7d32; }
+.status--pending { background: #fff8e1; color: #f57f17; }
+.status--completed { background: #e3f2fd; color: #1565c0; }
+.status--cancelled { background: #fbe9e7; color: #c62828; }
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  background: #f0f0f0;
+  color: #555;
+}
+
+.cell-id {
+  font-weight: 600;
+  color: #8b7355;
+  font-size: 0.85rem;
+}
+
+.booking-table .actions a {
+  display: inline-block;
+  color: #8b7355;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-right: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.booking-table .actions a:hover {
+  background: #8b7355;
+  color: #fff;
+}
+
+.manager-link {
+  font-size: 0.75rem;
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.manager-link:hover {
+  color: #8b7355;
+  border-color: #8b7355;
+}
+
+@media (max-width: 900px) {
+  .mgr-header { flex-direction: column; }
+  #manager { padding: 24px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .booking-table { font-size: 0.8rem; }
+  .booking-table th, .booking-table td { padding: 10px 12px; }
+}
+
+@media (max-width: 600px) {
+  #manager { padding: 16px; }
+  .stats { grid-template-columns: 1fr; }
+  .filter-bar__inner input, .filter-bar__inner select { min-width: 100%; }
+  .booking-table { display: block; overflow-x: auto; }
+}
+
+.legal-page { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+.legal-page h1 { font-size: 1.5rem; margin-bottom: 1.5rem; color: #000; }
+.legal-page h2 { font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: #000; }
+.legal-page p, .legal-page li { font-size: 0.95rem; line-height: 1.7; color: #333; }
+.legal-page ul { padding-left: 1.5rem; }
+.legal-page li { margin-bottom: 0.5rem; }
+.legal-page .updated { color: #888; font-size: 0.85rem; margin-bottom: 2rem; }

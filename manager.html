@@ -6,194 +6,48 @@
   <title>Управление бронированиями — London Transfer</title>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    #manager {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px;
-    }
-
-    #manager h2 {
-      font-size: 1.6rem;
-      margin-bottom: 8px;
-    }
-
-    #manager .subtitle {
-      color: #8b7355;
-      margin-bottom: 32px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-
-    .stat-card {
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 20px 24px;
-    }
-
-    .stat-card .num {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #1a1a1a;
-    }
-
-    .stat-card .label {
-      font-size: 0.85rem;
-      color: #888;
-      margin-top: 4px;
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .filter-bar input,
-    .filter-bar select {
-      width: auto;
-      min-width: 180px;
-      flex: 1;
-    }
-
-    .booking-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      overflow: hidden;
-      font-size: 0.9rem;
-    }
-
-    .booking-table th {
-      background: #1a1a1a;
-      color: #fff;
-      text-align: left;
-      padding: 14px 16px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.3px;
-    }
-
-    .booking-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .booking-table tr:hover td {
-      background: #fafaf5;
-    }
-
-    .status {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .status--confirmed { background: #e8f5e9; color: #2e7d32; }
-    .status--pending { background: #fff8e1; color: #f57f17; }
-    .status--completed { background: #e3f2fd; color: #1565c0; }
-    .status--cancelled { background: #fbe9e7; color: #c62828; }
-
-    .tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      background: #f0f0f0;
-      color: #555;
-    }
-
-    .booking-table .actions a {
-      color: #8b7355;
-      text-decoration: none;
-      font-size: 0.85rem;
-      margin-right: 12px;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .booking-table .actions a:hover {
-      border-color: #8b7355;
-    }
-
-    @media (max-width: 900px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .booking-table { font-size: 0.8rem; }
-      .booking-table th, .booking-table td { padding: 10px 12px; }
-    }
-
-    @media (max-width: 600px) {
-      .stats { grid-template-columns: 1fr; }
-      .filter-bar input, .filter-bar select { min-width: 100%; }
-      .booking-table { display: block; overflow-x: auto; }
-    }
-
-    .manager-link {
-      font-size: 0.75rem;
-      color: #999;
-      text-decoration: none;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .manager-link:hover {
-      color: #8b7355;
-      border-color: #8b7355;
-    }
-  </style>
 </head>
 <body>
   <div class="car-lane car-lane--left">
-    <div class="car" style="top: 40%; animation-delay: -3.5s; --dur: 9s;">
-      <svg viewBox="0 0 45.75 45.75" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-        <path d="M45.15,26.676l-4.178-3.135l-3.348-7.848V13.5c0-0.828-0.671-1.5-1.5-1.5h-7.823l-1.96-3.921C26.088,7.57,25.568,7.25,25,7.25H1.5C0.671,7.25,0,7.922,0,8.75v25c0,0.828,0.671,1.5,1.5,1.5h3.471c0.632,1.881,2.392,3.25,4.484,3.25c2.091,0,3.851-1.369,4.483-3.25h19.625c0.633,1.881,2.394,3.25,4.484,3.25c2.092,0,3.852-1.369,4.482-3.25h1.721c0.829,0,1.5-0.672,1.5-1.5v-5.875C45.751,27.402,45.527,26.959,45.15,26.676z M9.456,35.5c-0.966,0-1.75-0.783-1.75-1.75S8.489,32,9.456,32c0.967,0,1.75,0.783,1.75,1.75S10.422,35.5,9.456,35.5z M29.501,23.834c-0.274,0-0.5-0.225-0.5-0.5v-6.5c0-0.276,0.226-0.5,0.5-0.5h5.166h0.131c0.199,0,0.379,0.118,0.458,0.3l2.828,6.5c0.066,0.155,0.052,0.333-0.041,0.476c-0.057,0.084-0.139,0.14-0.229,0.179c-0.061,0.024-0.121,0.047-0.188,0.047L29.501,23.834L29.501,23.834z M38.039,35.5c-0.967,0-1.75-0.783-1.75-1.75S37.07,32,38.039,32c0.967,0,1.75,0.783,1.75,1.75S39.005,35.5,38.039,35.5z"/>
+
+    <div class="car car-flip" style="top: 40%; animation-delay: -3.5s; --dur: 9s;">
+      <svg viewBox="0 -39.69 122.88 122.88" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M103.94,23.97c5.39,0,9.76,4.37,9.76,9.76c0,5.39-4.37,9.76-9.76,9.76c-5.39,0-9.76-4.37-9.76-9.76 C94.18,28.34,98.55,23.97,103.94,23.97L103.94,23.97z M23,29.07v3.51h3.51C26.09,30.86,24.73,29.49,23,29.07L23,29.07z M26.52,34.87H23v3.51C24.73,37.97,26.09,36.6,26.52,34.87L26.52,34.87z M20.71,38.39v-3.51H17.2 C17.62,36.6,18.99,37.96,20.71,38.39L20.71,38.39z M17.2,32.59h3.51v-3.51C18.99,29.49,17.62,30.86,17.2,32.59L17.2,32.59z M105.09,29.07v3.51h3.51C108.18,30.86,106.82,29.49,105.09,29.07L105.09,29.07z M108.6,34.87h-3.51v3.51 C106.82,37.97,108.18,36.6,108.6,34.87L108.6,34.87z M102.8,38.39v-3.51h-3.51C99.71,36.6,101.07,37.96,102.8,38.39L102.8,38.39z M99.28,32.59h3.51v-3.51C101.07,29.49,99.71,30.86,99.28,32.59L99.28,32.59z M49.29,12.79c-1.54-0.35-3.07-0.35-4.61-0.28 C56.73,6.18,61.46,2.07,75.57,2.9l-1.94,12.87L50.4,16.65c0.21-0.61,0.33-0.94,0.37-1.55C50.88,13.36,50.86,13.15,49.29,12.79 L49.29,12.79z M79.12,3.13L76.6,15.6l24.13-0.98c2.48-0.1,2.91-1.19,1.41-3.28c-0.68-0.95-1.44-1.89-2.31-2.82 C93.59,1.86,87.38,3.24,79.12,3.13L79.12,3.13z M0.46,27.28H1.2c0.46-2.04,1.37-3.88,2.71-5.53c2.94-3.66,4.28-3.2,8.65-3.99 l24.46-4.61c5.43-3.86,11.98-7.3,19.97-10.2C64.4,0.25,69.63-0.01,77.56,0c4.54,0.01,9.14,0.28,13.81,0.84 c2.37,0.15,4.69,0.47,6.97,0.93c2.73,0.55,5.41,1.31,8.04,2.21l9.8,5.66c2.89,1.67,3.51,3.62,3.88,6.81l1.38,11.78h1.43v6.51 c-0.2,2.19-1.06,2.52-2.88,2.52h-2.37c0.92-20.59-28.05-24.11-27.42,1.63H34.76c3.73-17.75-14.17-23.91-22.96-13.76 c-2.67,3.09-3.6,7.31-3.36,12.3H2.03c-0.51-0.24-0.91-0.57-1.21-0.98c-1.05-1.43-0.82-5.74-0.74-8.23 C0.09,27.55-0.12,27.28,0.46,27.28L0.46,27.28z M21.86,23.97c5.39,0,9.76,4.37,9.76,9.76c0,5.39-4.37,9.76-9.76,9.76 c-5.39,0-9.76-4.37-9.76-9.76C12.1,28.34,16.47,23.97,21.86,23.97L21.86,23.97z"/>
       </svg>
     </div>
-    <div class="car" style="top: 65%; animation-delay: -6s; --dur: 8s;">
-      <svg viewBox="0 0 47.067 47.067" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-        <path d="M43.377,23.098l-8.074-3.027l-7.934-8.429c-0.353-0.371-0.84-0.581-1.351-0.581H7.886c-0.607,0-1.176,0.298-1.522,0.798L0.327,20.6c0,0.002-0.002,0.006-0.002,0.01c-0.093,0.134-0.159,0.282-0.212,0.434c-0.016,0.04-0.106,0.427-0.109,0.585C0.004,21.637,0,21.645,0,21.651v7.816c0,1.021,0.829,1.851,1.851,1.851h0.002h1.764c0.543,2.672,2.91,4.688,5.739,4.688c2.832,0,5.199-2.02,5.743-4.688h15.461c0.545,2.672,2.909,4.688,5.739,4.688s5.197-2.02,5.742-4.688h3.172c1.024,0,1.854-0.828,1.854-1.851v-1.04C47.069,26.07,45.586,23.928,43.377,23.098z M9.359,32.305c-1.192,0-2.157-0.966-2.157-2.158c0-1.191,0.965-2.158,2.157-2.158c1.193,0,2.16,0.967,2.16,2.158C11.519,31.339,10.552,32.305,9.359,32.305z M13.372,19.802H5.379l3.478-5.038h4.512v5.038H13.372z M17.075,19.802v-5.038h8.146l4.744,5.038H17.075z M36.252,32.305c-1.191,0-2.156-0.966-2.156-2.158c0-1.191,0.965-2.158,2.156-2.158c1.192,0,2.159,0.967,2.159,2.158C38.411,31.339,37.444,32.305,36.252,32.305z"/>
+    <div class="car car-flip" style="top: 65%; animation-delay: -6s; --dur: 8s;">
+      <svg viewBox="0 -43.92 122.88 122.88" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M99.42,13.57c5.93,0,10.73,4.8,10.73,10.73c0,5.93-4.8,10.73-10.73,10.73s-10.73-4.8-10.73-10.73 C88.69,18.37,93.49,13.57,99.42,13.57L99.42,13.57z M79.05,5c-0.59,1.27-1.06,2.69-1.42,4.23c-0.82,2.57,0.39,3.11,3.19,2.06 c2.06-1.23,4.12-2.47,6.18-3.7c1.05-0.74,1.55-1.47,1.38-2.19c-0.34-1.42-3.08-2.16-5.33-2.6C80.19,2.23,80.39,2.11,79.05,5 L79.05,5z M23.86,19.31c2.75,0,4.99,2.23,4.99,4.99c0,2.75-2.23,4.99-4.99,4.99c-2.75,0-4.99-2.23-4.99-4.99 C18.87,21.54,21.1,19.31,23.86,19.31L23.86,19.31z M99.42,19.31c2.75,0,4.99,2.23,4.99,4.99c0,2.75-2.23,4.99-4.99,4.99 c-2.75,0-4.99-2.23-4.99-4.99C94.43,21.54,96.66,19.31,99.42,19.31L99.42,19.31z M46.14,12.5c2.77-2.97,5.97-4.9,9.67-6.76 c8.1-4.08,13.06-3.58,21.66-3.58l-2.89,7.5c-1.21,1.6-2.58,2.73-4.66,2.84H46.14L46.14,12.5z M23.86,13.57 c5.93,0,10.73,4.8,10.73,10.73c0,5.93-4.8,10.73-10.73,10.73s-10.73-4.8-10.73-10.73C13.13,18.37,17.93,13.57,23.86,13.57 L23.86,13.57z M40.82,10.3c3.52-2.19,7.35-4.15,11.59-5.82c12.91-5.09,22.78-6,36.32-1.9c4.08,1.55,8.16,3.1,12.24,4.06 c4.03,0.96,21.48,1.88,21.91,4.81l-4.31,5.15c1.57,1.36,2.85,3.03,3.32,5.64c-0.13,1.61-0.57,2.96-1.33,4.04 c-1.29,1.85-5.07,3.76-7.11,2.67c-0.65-0.35-1.02-1.05-1.01-2.24c0.06-23.9-28.79-21.18-26.62,2.82H35.48 C44.8,5.49,5.04,5.4,12.1,28.7C9.62,31.38,3.77,27.34,0,18.75c1.03-1.02,2.16-1.99,3.42-2.89c-0.06-0.05,0.06,0.19-0.15-0.17 c-0.21-0.36,0.51-1.87,1.99-2.74C13.02,8.4,31.73,8.52,40.82,10.3L40.82,10.3z"/>
       </svg>
     </div>
-    <div class="car" style="top: 85%; animation-delay: -2s; --dur: 10s;">
-      <svg viewBox="0 0 44.75 44.75" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-        <path d="M37.409,18.905l-4.946-7.924c-0.548-0.878-1.51-1.411-2.545-1.411H3c-1.657,0-3,1.343-3,3v16.86c0,1.657,1.343,3,3,3h0.787c0.758,1.618,2.391,2.75,4.293,2.75s3.534-1.132,4.292-2.75h20.007c0.758,1.618,2.391,2.75,4.293,2.75c1.9,0,3.534-1.132,4.291-2.75h0.787c1.656,0,3-1.343,3-3v-2.496C44.75,22.737,41.516,19.272,37.409,18.905z M8.087,32.395c-1.084,0-1.963-0.879-1.963-1.963s0.879-1.964,1.963-1.964s1.963,0.88,1.963,1.964S9.171,32.395,8.087,32.395z M26.042,21.001V15.57v-2.999h3.876l5.264,8.43H26.042z M36.671,32.395c-1.084,0-1.963-0.879-1.963-1.963s0.879-1.964,1.963-1.964s1.963,0.88,1.963,1.964S37.755,32.395,36.671,32.395z"/>
+    <div class="car car-flip" style="top: 85%; animation-delay: -2s; --dur: 10s;">
+      <svg viewBox="0 -43.14 122.88 122.88" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0,23.97c0.29-1.63,1.11-2.63,2.72-2.69c-0.14-1.7,0.18-3.13,0.92-4.31c0.35-0.55,0.79-1.04,1.33-1.47 c1.87-1.52,3.99-1.68,6.3-2.1c2.24-0.41,4.48-0.75,6.71-1.01c2.7-0.32,5.41-0.53,8.12-0.61c1.25-0.04,0.95,0.03,1.95-0.73 c4.87-3.76,10.17-6.85,15.72-9.52C45.7,0.55,48.18,0.08,51.09,0C56.91,0,80,0,85.82,0c3.85,0.02,7.13,0.9,9.88,2.56l10.58,8.14 c3.53,0.23,7.05,0.46,10.58,0.7c2.16-0.06,3.81,0.68,4.44,3.02v7.15c2.99,0.77,1.04,7.66-0.3,9.17c-1.18,1.33-2.26,1.18-3.84,1.18 h-9.43c1.81-13.63-12.08-16.54-17.8-9.12c-1.89,2.45-2.18,5.79-1.39,9.72H28.45c2.19-10.1-4.33-14.21-10.33-13.62 c-7.72,0.76-9.75,6.95-8.42,13.74H3.01C1.11,32.72,0.22,31.2,0,28.63V23.97L0,23.97z M20.04,25.27v2.76h2.76 C22.47,26.68,21.4,25.61,20.04,25.27L20.04,25.27z M22.8,29.83h-2.76v2.76C21.4,32.26,22.47,31.19,22.8,29.83L22.8,29.83z M19.15,32.7h-0.02h0.01H19.15L19.15,32.7z M18.24,32.59v-2.76h-2.76C15.81,31.19,16.88,32.26,18.24,32.59L18.24,32.59z M15.48,28.03h2.76v-2.76C16.88,25.61,15.81,26.67,15.48,28.03L15.48,28.03z M98.8,25.27v2.76h2.76 C101.23,26.68,100.16,25.61,98.8,25.27L98.8,25.27z M101.67,28.92v0.02l0-0.01L101.67,28.92L101.67,28.92z M101.57,29.83H98.8v2.76 C100.16,32.26,101.23,31.19,101.57,29.83L101.57,29.83z M97.92,32.7h-0.02h0.01H97.92L97.92,32.7z M97.01,32.59v-2.76h-2.76 C94.58,31.19,95.65,32.26,97.01,32.59L97.01,32.59z M94.24,28.03h2.76v-2.76C95.65,25.61,94.58,26.67,94.24,28.03L94.24,28.03z M33.07,10.7V14h20.09l1.56-11.48h-4.58c-3.65,0.43-4.24,0.55-7.55,2.31c-2.73,1.45-5.22,3.04-7.87,4.77 C34.17,9.96,33.61,10.33,33.07,10.7L33.07,10.7z M77.54,2.39l-1.73,11.62h11.53l2.37-2.57L91,10.04c-0.12-6.79-0.93-7.55-6.95-7.58 L77.54,2.39L77.54,2.39z M58.08,2.39l-1.73,11.62h15.37l1.52-11.53L58.08,2.39L58.08,2.39z M19.14,21.27 c4.23,0,7.67,3.43,7.67,7.67c0,4.23-3.43,7.67-7.67,7.67c-4.23,0-7.67-3.43-7.67-7.67C11.47,24.7,14.9,21.27,19.14,21.27 L19.14,21.27z M97.9,21.27c4.23,0,7.67,3.43,7.67,7.67c0,4.23-3.43,7.67-7.67,7.67c-4.23,0-7.67-3.43-7.67-7.67 C90.24,24.7"/>
       </svg>
     </div>
   </div>
 
   <div class="car-lane car-lane--right">
     <div class="car" style="top: 22%; animation-delay: -2.5s; --dur: 8s;">
-      <svg viewBox="0 0 40.664 40.664" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg" class="car-flip-inline">
-        <path d="M40.43,21.507l-4.832-7.515c-0.274-0.43-0.752-0.688-1.263-0.688h-5.252V9.101c0-0.829-0.67-1.5-1.5-1.5h-8h-8.749h-8c-0.828,0-1.5,0.671-1.5,1.5v6.703v5.031C0.584,20.919,0,21.548,0,22.317v5.996c0,0.828,0.672,1.5,1.5,1.5h0.018c0.631,1.882,2.392,3.25,4.481,3.25c1.235,0,2.351-0.484,3.196-1.26c0.846,0.771,1.961,1.26,3.195,1.26c2.092,0,3.852-1.368,4.483-3.25H28.74c0.631,1.882,2.391,3.25,4.481,3.25c2.616,0,4.75-2.131,4.75-4.75c0-0.336-0.037-0.662-0.104-0.979l2.254-1.863c0.344-0.285,0.543-0.71,0.543-1.156v-1.996C40.667,22.03,40.585,21.749,40.43,21.507z M6,30.062c-0.966,0-1.749-0.782-1.749-1.748c0-0.967,0.783-1.75,1.749-1.75s1.749,0.783,1.749,1.75C7.75,29.28,6.966,30.062,6,30.062z M9.334,20.818h-5v-3.516h5V20.818z M9.334,14.304h-5v-3.703h5V14.304z M12.417,30.062c-0.966,0-1.749-0.782-1.749-1.748c0-0.967,0.783-1.75,1.749-1.75s1.749,0.783,1.749,1.75C14.166,29.28,13.383,30.062,12.417,30.062z M18.083,20.818h-5.749v-3.516h5.749V20.818z M18.083,14.304h-5.749v-3.703h5.749V14.304z M26.083,20.816l-5,0.002v-3.516h5V20.816z M26.083,14.304h-5v-3.703h5V14.304z M33.245,30.062c-0.968,0-1.75-0.782-1.75-1.748c0-0.967,0.782-1.75,1.75-1.75c0.965,0,1.748,0.783,1.748,1.75C34.993,29.28,34.21,30.062,33.245,30.062z M29.001,20.816v-5.014h0.082h4.67l3.358,5.014H29.001z"/>
+      <svg viewBox="0 -39.69 122.88 122.88" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M103.94,23.97c5.39,0,9.76,4.37,9.76,9.76c0,5.39-4.37,9.76-9.76,9.76c-5.39,0-9.76-4.37-9.76-9.76 C94.18,28.34,98.55,23.97,103.94,23.97L103.94,23.97z M23,29.07v3.51h3.51C26.09,30.86,24.73,29.49,23,29.07L23,29.07z M26.52,34.87H23v3.51C24.73,37.97,26.09,36.6,26.52,34.87L26.52,34.87z M20.71,38.39v-3.51H17.2 C17.62,36.6,18.99,37.96,20.71,38.39L20.71,38.39z M17.2,32.59h3.51v-3.51C18.99,29.49,17.62,30.86,17.2,32.59L17.2,32.59z M105.09,29.07v3.51h3.51C108.18,30.86,106.82,29.49,105.09,29.07L105.09,29.07z M108.6,34.87h-3.51v3.51 C106.82,37.97,108.18,36.6,108.6,34.87L108.6,34.87z M102.8,38.39v-3.51h-3.51C99.71,36.6,101.07,37.96,102.8,38.39L102.8,38.39z M99.28,32.59h3.51v-3.51C101.07,29.49,99.71,30.86,99.28,32.59L99.28,32.59z M49.29,12.79c-1.54-0.35-3.07-0.35-4.61-0.28 C56.73,6.18,61.46,2.07,75.57,2.9l-1.94,12.87L50.4,16.65c0.21-0.61,0.33-0.94,0.37-1.55C50.88,13.36,50.86,13.15,49.29,12.79 L49.29,12.79z M79.12,3.13L76.6,15.6l24.13-0.98c2.48-0.1,2.91-1.19,1.41-3.28c-0.68-0.95-1.44-1.89-2.31-2.82 C93.59,1.86,87.38,3.24,79.12,3.13L79.12,3.13z M0.46,27.28H1.2c0.46-2.04,1.37-3.88,2.71-5.53c2.94-3.66,4.28-3.2,8.65-3.99 l24.46-4.61c5.43-3.86,11.98-7.3,19.97-10.2C64.4,0.25,69.63-0.01,77.56,0c4.54,0.01,9.14,0.28,13.81,0.84 c2.37,0.15,4.69,0.47,6.97,0.93c2.73,0.55,5.41,1.31,8.04,2.21l9.8,5.66c2.89,1.67,3.51,3.62,3.88,6.81l1.38,11.78h1.43v6.51 c-0.2,2.19-1.06,2.52-2.88,2.52h-2.37c0.92-20.59-28.05-24.11-27.42,1.63H34.76c3.73-17.75-14.17-23.91-22.96-13.76 c-2.67,3.09-3.6,7.31-3.36,12.3H2.03c-0.51-0.24-0.91-0.57-1.21-0.98c-1.05-1.43-0.82-5.74-0.74-8.23 C0.09,27.55-0.12,27.28,0.46,27.28L0.46,27.28z M21.86,23.97c5.39,0,9.76,4.37,9.76,9.76c0,5.39-4.37,9.76-9.76,9.76 c-5.39,0-9.76-4.37-9.76-9.76C12.1,28.34,16.47,23.97,21.86,23.97L21.86,23.97z"/>
       </svg>
     </div>
     <div class="car" style="top: 48%; animation-delay: -5s; --dur: 10s;">
-      <svg viewBox="0 0 24 24" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg" class="car-flip-inline">
-        <path d="M22,17a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V11A2,2,0,0,1,4,9H14A8,8,0,0,1,22,17ZM16,6a1,1,0,0,0-1-1H9A1,1,0,0,0,9,7h6A1,1,0,0,0,16,6Z" fill="#fff"/>
-        <path d="M7,14H5a1,1,0,0,1,0-2H7a1,1,0,0,1,0,2Zm7-5H12v4a1,1,0,0,0,1,1h8.41A8,8,0,0,0,14,9Z" fill="#fff"/>
-        <path d="M11,11a1,1,0,0,1-1-1V6a1,1,0,0,1,2,0v4A1,1,0,0,1,11,11Z" fill="rgba(255,255,255,0.5)"/>
+      <svg viewBox="0 -43.92 122.88 122.88" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M99.42,13.57c5.93,0,10.73,4.8,10.73,10.73c0,5.93-4.8,10.73-10.73,10.73s-10.73-4.8-10.73-10.73 C88.69,18.37,93.49,13.57,99.42,13.57L99.42,13.57z M79.05,5c-0.59,1.27-1.06,2.69-1.42,4.23c-0.82,2.57,0.39,3.11,3.19,2.06 c2.06-1.23,4.12-2.47,6.18-3.7c1.05-0.74,1.55-1.47,1.38-2.19c-0.34-1.42-3.08-2.16-5.33-2.6C80.19,2.23,80.39,2.11,79.05,5 L79.05,5z M23.86,19.31c2.75,0,4.99,2.23,4.99,4.99c0,2.75-2.23,4.99-4.99,4.99c-2.75,0-4.99-2.23-4.99-4.99 C18.87,21.54,21.1,19.31,23.86,19.31L23.86,19.31z M99.42,19.31c2.75,0,4.99,2.23,4.99,4.99c0,2.75-2.23,4.99-4.99,4.99 c-2.75,0-4.99-2.23-4.99-4.99C94.43,21.54,96.66,19.31,99.42,19.31L99.42,19.31z M46.14,12.5c2.77-2.97,5.97-4.9,9.67-6.76 c8.1-4.08,13.06-3.58,21.66-3.58l-2.89,7.5c-1.21,1.6-2.58,2.73-4.66,2.84H46.14L46.14,12.5z M23.86,13.57 c5.93,0,10.73,4.8,10.73,10.73c0,5.93-4.8,10.73-10.73,10.73s-10.73-4.8-10.73-10.73C13.13,18.37,17.93,13.57,23.86,13.57 L23.86,13.57z M40.82,10.3c3.52-2.19,7.35-4.15,11.59-5.82c12.91-5.09,22.78-6,36.32-1.9c4.08,1.55,8.16,3.1,12.24,4.06 c4.03,0.96,21.48,1.88,21.91,4.81l-4.31,5.15c1.57,1.36,2.85,3.03,3.32,5.64c-0.13,1.61-0.57,2.96-1.33,4.04 c-1.29,1.85-5.07,3.76-7.11,2.67c-0.65-0.35-1.02-1.05-1.01-2.24c0.06-23.9-28.79-21.18-26.62,2.82H35.48 C44.8,5.49,5.04,5.4,12.1,28.7C9.62,31.38,3.77,27.34,0,18.75c1.03-1.02,2.16-1.99,3.42-2.89c-0.06-0.05,0.06,0.19-0.15-0.17 c-0.21-0.36,0.51-1.87,1.99-2.74C13.02,8.4,31.73,8.52,40.82,10.3L40.82,10.3z"/>
       </svg>
     </div>
     <div class="car" style="top: 72%; animation-delay: -7s; --dur: 7s;">
-      <svg viewBox="0 0 45.75 45.75" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg" class="car-flip-inline">
-        <path d="M45.15,26.676l-4.178-3.135l-3.348-7.848V13.5c0-0.828-0.671-1.5-1.5-1.5h-7.823l-1.96-3.921C26.088,7.57,25.568,7.25,25,7.25H1.5C0.671,7.25,0,7.922,0,8.75v25c0,0.828,0.671,1.5,1.5,1.5h3.471c0.632,1.881,2.392,3.25,4.484,3.25c2.091,0,3.851-1.369,4.483-3.25h19.625c0.633,1.881,2.394,3.25,4.484,3.25c2.092,0,3.852-1.369,4.482-3.25h1.721c0.829,0,1.5-0.672,1.5-1.5v-5.875C45.751,27.402,45.527,26.959,45.15,26.676z M9.456,35.5c-0.966,0-1.75-0.783-1.75-1.75S8.489,32,9.456,32c0.967,0,1.75,0.783,1.75,1.75S10.422,35.5,9.456,35.5z M29.501,23.834c-0.274,0-0.5-0.225-0.5-0.5v-6.5c0-0.276,0.226-0.5,0.5-0.5h5.166h0.131c0.199,0,0.379,0.118,0.458,0.3l2.828,6.5c0.066,0.155,0.052,0.333-0.041,0.476c-0.057,0.084-0.139,0.14-0.229,0.179c-0.061,0.024-0.121,0.047-0.188,0.047L29.501,23.834L29.501,23.834z M38.039,35.5c-0.967,0-1.75-0.783-1.75-1.75S37.07,32,38.039,32c0.967,0,1.75,0.783,1.75,1.75S39.005,35.5,38.039,35.5z"/>
+      <svg viewBox="0 -43.14 122.88 122.88" width="80" height="80" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0,23.97c0.29-1.63,1.11-2.63,2.72-2.69c-0.14-1.7,0.18-3.13,0.92-4.31c0.35-0.55,0.79-1.04,1.33-1.47 c1.87-1.52,3.99-1.68,6.3-2.1c2.24-0.41,4.48-0.75,6.71-1.01c2.7-0.32,5.41-0.53,8.12-0.61c1.25-0.04,0.95,0.03,1.95-0.73 c4.87-3.76,10.17-6.85,15.72-9.52C45.7,0.55,48.18,0.08,51.09,0C56.91,0,80,0,85.82,0c3.85,0.02,7.13,0.9,9.88,2.56l10.58,8.14 c3.53,0.23,7.05,0.46,10.58,0.7c2.16-0.06,3.81,0.68,4.44,3.02v7.15c2.99,0.77,1.04,7.66-0.3,9.17c-1.18,1.33-2.26,1.18-3.84,1.18 h-9.43c1.81-13.63-12.08-16.54-17.8-9.12c-1.89,2.45-2.18,5.79-1.39,9.72H28.45c2.19-10.1-4.33-14.21-10.33-13.62 c-7.72,0.76-9.75,6.95-8.42,13.74H3.01C1.11,32.72,0.22,31.2,0,28.63V23.97L0,23.97z M20.04,25.27v2.76h2.76 C22.47,26.68,21.4,25.61,20.04,25.27L20.04,25.27z M22.8,29.83h-2.76v2.76C21.4,32.26,22.47,31.19,22.8,29.83L22.8,29.83z M19.15,32.7h-0.02h0.01H19.15L19.15,32.7z M18.24,32.59v-2.76h-2.76C15.81,31.19,16.88,32.26,18.24,32.59L18.24,32.59z M15.48,28.03h2.76v-2.76C16.88,25.61,15.81,26.67,15.48,28.03L15.48,28.03z M98.8,25.27v2.76h2.76 C101.23,26.68,100.16,25.61,98.8,25.27L98.8,25.27z M101.67,28.92v0.02l0-0.01L101.67,28.92L101.67,28.92z M101.57,29.83H98.8v2.76 C100.16,32.26,101.23,31.19,101.57,29.83L101.57,29.83z M97.92,32.7h-0.02h0.01H97.92L97.92,32.7z M97.01,32.59v-2.76h-2.76 C94.58,31.19,95.65,32.26,97.01,32.59L97.01,32.59z M94.24,28.03h2.76v-2.76C95.65,25.61,94.58,26.67,94.24,28.03L94.24,28.03z M33.07,10.7V14h20.09l1.56-11.48h-4.58c-3.65,0.43-4.24,0.55-7.55,2.31c-2.73,1.45-5.22,3.04-7.87,4.77 C34.17,9.96,33.61,10.33,33.07,10.7L33.07,10.7z M77.54,2.39l-1.73,11.62h11.53l2.37-2.57L91,10.04c-0.12-6.79-0.93-7.55-6.95-7.58 L77.54,2.39L77.54,2.39z M58.08,2.39l-1.73,11.62h15.37l1.52-11.53L58.08,2.39L58.08,2.39z M19.14,21.27 c4.23,0,7.67,3.43,7.67,7.67c0,4.23-3.43,7.67-7.67,7.67c-4.23,0-7.67-3.43-7.67-7.67C11.47,24.7,14.9,21.27,19.14,21.27 L19.14,21.27z M97.9,21.27c4.23,0,7.67,3.43,7.67,7.67c0,4.23-3.43,7.67-7.67,7.67c-4.23,0-7.67-3.43-7.67-7.67 C90.24,24.7"/>
       </svg>
     </div>
   </div>
 
   <div id="page">
-    <header>
-      <h1>London Transfer</h1>
+    <header style="background:#fff;flex-direction:column;text-align:center;gap:12px;">
+      <h1 style="color:#000; font-weight:700;">LONDON ROUTE TRANSFERS</h1>
       <nav>
         <a href="Index.html">Главная</a>
         <a href="booking.html">Заказ</a>
@@ -203,175 +57,189 @@
     </header>
 
     <main id="manager">
-      <h2>Бронирования</h2>
-      <p class="subtitle">Управление заказами на трансфер</p>
+      <div class="mgr-header">
+        <div>
+          <h2>Бронирования</h2>
+          <p class="subtitle">Управление заказами на трансфер</p>
+        </div>
+        <button class="mgr-btn mgr-btn--primary" onclick="alert('Форма создания заказа')">+ Новый заказ</button>
+      </div>
 
       <div class="stats">
         <div class="stat-card">
+          <div class="stat-icon stat-icon--total">📋</div>
           <div class="num">12</div>
           <div class="label">Всего заказов</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon stat-icon--confirmed">✓</div>
           <div class="num">4</div>
           <div class="label">Подтверждено</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon stat-icon--pending">⏳</div>
           <div class="num">6</div>
           <div class="label">В обработке</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon stat-icon--done">✔</div>
           <div class="num">2</div>
           <div class="label">Завершено</div>
         </div>
       </div>
 
       <div class="filter-bar">
-        <input type="text" placeholder="Поиск по имени, телефону, адресу..." oninput="filterTable(this.value)">
-        <select onchange="filterStatus(this.value)">
-          <option value="">Все статусы</option>
-          <option value="Подтверждено">Подтверждено</option>
-          <option value="В обработке">В обработке</option>
-          <option value="Завершено">Завершено</option>
-          <option value="Отменено">Отменено</option>
-        </select>
+        <div class="filter-bar__inner">
+          <input type="text" placeholder="Поиск по имени, телефону, адресу..." oninput="filterTable(this.value)">
+          <select onchange="filterStatus(this.value)">
+            <option value="">Все статусы</option>
+            <option value="Подтверждено">Подтверждено</option>
+            <option value="В обработке">В обработке</option>
+            <option value="Завершено">Завершено</option>
+            <option value="Отменено">Отменено</option>
+          </select>
+        </div>
+        <span class="filter-count" id="rowCount">12 записей</span>
       </div>
 
-      <table class="booking-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Клиент</th>
-            <th>Телефон</th>
-            <th>Услуга</th>
-            <th>Маршрут</th>
-            <th>Дата</th>
-            <th>Статус</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>#001</td>
-            <td><strong>Анна Смирнова</strong><br><span class="tag">anna@mail.test</span></td>
-            <td>+44 7700 100001</td>
-            <td>Аэропорт Heathrow</td>
-            <td>Kensington → LHR T5</td>
-            <td>05.06.2026 08:30</td>
-            <td><span class="status status--confirmed">Подтверждено</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#002</td>
-            <td><strong>Дмитрий Волков</strong><br><span class="tag">d.volkov@corp.test</span></td>
-            <td>+44 7700 100002</td>
-            <td>Корпоративный</td>
-            <td>Canary Wharf → Liverpool St</td>
-            <td>05.06.2026 09:00</td>
-            <td><span class="status status--pending">В обработке</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#003</td>
-            <td><strong>Елена Ковальчук</strong><br><span class="tag">elena.k@test.co.uk</span></td>
-            <td>+44 7700 100003</td>
-            <td>Частная поездка</td>
-            <td>Mayfair → Soho</td>
-            <td>05.06.2026 14:00</td>
-            <td><span class="status status--confirmed">Подтверждено</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#004</td>
-            <td><strong>Сергей Новиков</strong><br><span class="tag">novikov@edu.test</span></td>
-            <td>+44 7700 100004</td>
-            <td>Групповая перевозка</td>
-            <td>Paddington → Oxford</td>
-            <td>06.06.2026 10:00</td>
-            <td><span class="status status--pending">В обработке</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#005</td>
-            <td><strong>Мария Вест</strong><br><span class="tag">m.west@mail.test</span></td>
-            <td>+44 7700 100005</td>
-            <td>Аэропорт Gatwick</td>
-            <td>Westminster → LGW N</td>
-            <td>06.06.2026 15:30</td>
-            <td><span class="status status--pending">В обработке</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#006</td>
-            <td><strong>Олег Титов</strong><br><span class="tag">oleg@event.test</span></td>
-            <td>+44 7700 100006</td>
-            <td>Корпоративный</td>
-            <td>Beckenham → St Paul&rsquo;s</td>
-            <td>07.06.2026 07:45</td>
-            <td><span class="status status--confirmed">Подтверждено</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#007</td>
-            <td><strong>Ирина Павлова</strong><br><span class="tag">i.pavlova@test.uk</span></td>
-            <td>+44 7700 100007</td>
-            <td>Частная поездка</td>
-            <td>Camden → Heathrow</td>
-            <td>08.06.2026 06:00</td>
-            <td><span class="status status--pending">В обработке</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#008</td>
-            <td><strong>Алексей Морозов</strong><br><span class="tag">morozov@edu.test</span></td>
-            <td>+44 7700 100008</td>
-            <td>Групповая перевозка</td>
-            <td>Kingston → Cambridge</td>
-            <td>09.06.2026 11:00</td>
-            <td><span class="status status--confirmed">Подтверждено</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#009</td>
-            <td><strong>Наталья Григорьева</strong><br><span class="tag">nata@mail.test</span></td>
-            <td>+44 7700 100009</td>
-            <td>Аэропорт Stansted</td>
-            <td>Stratford → STN</td>
-            <td>10.06.2026 12:00</td>
-            <td><span class="status status--pending">В обработке</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#010</td>
-            <td><strong>Вадим Кузнецов</strong><br><span class="tag">vk@business.test</span></td>
-            <td>+44 7700 100010</td>
-            <td>Корпоративный</td>
-            <td>Southbank → City Airport</td>
-            <td>11.06.2026 16:00</td>
-            <td><span class="status status--completed">Завершено</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#011</td>
-            <td><strong>Татьяна Белова</strong><br><span class="tag">t.belova@test.co.uk</span></td>
-            <td>+44 7700 100011</td>
-            <td>Частная поездка</td>
-            <td>Greenwich → Hyde Park</td>
-            <td>11.06.2026 19:00</td>
-            <td><span class="status status--completed">Завершено</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-          <tr>
-            <td>#012</td>
-            <td><strong>Константин Романов</strong><br><span class="tag">k.romanov@mail.test</span></td>
-            <td>+44 7700 100012</td>
-            <td>Аэропорт Luton</td>
-            <td>Bloomsbury → LTN</td>
-            <td>12.06.2026 05:30</td>
-            <td><span class="status status--pending">В обработке</span></td>
-            <td class="actions"><a href="#">✎</a><a href="#">✕</a></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="booking-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Клиент</th>
+              <th>Телефон</th>
+              <th>Услуга</th>
+              <th>Маршрут</th>
+              <th>Дата</th>
+              <th>Статус</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-id">#001</td>
+              <td><strong>Анна Смирнова</strong><br><span class="tag">anna@mail.test</span></td>
+              <td>+44 7700 100001</td>
+              <td>Аэропорт Heathrow</td>
+              <td>Kensington → LHR T5</td>
+              <td>05.06.2026 08:30</td>
+              <td><span class="status status--confirmed">Подтверждено</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#002</td>
+              <td><strong>Дмитрий Волков</strong><br><span class="tag">d.volkov@corp.test</span></td>
+              <td>+44 7700 100002</td>
+              <td>Корпоративный</td>
+              <td>Canary Wharf → Liverpool St</td>
+              <td>05.06.2026 09:00</td>
+              <td><span class="status status--pending">В обработке</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#003</td>
+              <td><strong>Елена Ковальчук</strong><br><span class="tag">elena.k@test.co.uk</span></td>
+              <td>+44 7700 100003</td>
+              <td>Частная поездка</td>
+              <td>Mayfair → Soho</td>
+              <td>05.06.2026 14:00</td>
+              <td><span class="status status--confirmed">Подтверждено</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#004</td>
+              <td><strong>Сергей Новиков</strong><br><span class="tag">novikov@edu.test</span></td>
+              <td>+44 7700 100004</td>
+              <td>Групповая перевозка</td>
+              <td>Paddington → Oxford</td>
+              <td>06.06.2026 10:00</td>
+              <td><span class="status status--pending">В обработке</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#005</td>
+              <td><strong>Мария Вест</strong><br><span class="tag">m.west@mail.test</span></td>
+              <td>+44 7700 100005</td>
+              <td>Аэропорт Gatwick</td>
+              <td>Westminster → LGW N</td>
+              <td>06.06.2026 15:30</td>
+              <td><span class="status status--pending">В обработке</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#006</td>
+              <td><strong>Олег Титов</strong><br><span class="tag">oleg@event.test</span></td>
+              <td>+44 7700 100006</td>
+              <td>Корпоративный</td>
+              <td>Beckenham → St Paul&rsquo;s</td>
+              <td>07.06.2026 07:45</td>
+              <td><span class="status status--confirmed">Подтверждено</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#007</td>
+              <td><strong>Ирина Павлова</strong><br><span class="tag">i.pavlova@test.uk</span></td>
+              <td>+44 7700 100007</td>
+              <td>Частная поездка</td>
+              <td>Camden → Heathrow</td>
+              <td>08.06.2026 06:00</td>
+              <td><span class="status status--pending">В обработке</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#008</td>
+              <td><strong>Алексей Морозов</strong><br><span class="tag">morozov@edu.test</span></td>
+              <td>+44 7700 100008</td>
+              <td>Групповая перевозка</td>
+              <td>Kingston → Cambridge</td>
+              <td>09.06.2026 11:00</td>
+              <td><span class="status status--confirmed">Подтверждено</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#009</td>
+              <td><strong>Наталья Григорьева</strong><br><span class="tag">nata@mail.test</span></td>
+              <td>+44 7700 100009</td>
+              <td>Аэропорт Stansted</td>
+              <td>Stratford → STN</td>
+              <td>10.06.2026 12:00</td>
+              <td><span class="status status--pending">В обработке</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#010</td>
+              <td><strong>Вадим Кузнецов</strong><br><span class="tag">vk@business.test</span></td>
+              <td>+44 7700 100010</td>
+              <td>Корпоративный</td>
+              <td>Southbank → City Airport</td>
+              <td>11.06.2026 16:00</td>
+              <td><span class="status status--completed">Завершено</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#011</td>
+              <td><strong>Татьяна Белова</strong><br><span class="tag">t.belova@test.co.uk</span></td>
+              <td>+44 7700 100011</td>
+              <td>Частная поездка</td>
+              <td>Greenwich → Hyde Park</td>
+              <td>11.06.2026 19:00</td>
+              <td><span class="status status--completed">Завершено</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+            <tr>
+              <td class="cell-id">#012</td>
+              <td><strong>Константин Романов</strong><br><span class="tag">k.romanov@mail.test</span></td>
+              <td>+44 7700 100012</td>
+              <td>Аэропорт Luton</td>
+              <td>Bloomsbury → LTN</td>
+              <td>12.06.2026 05:30</td>
+              <td><span class="status status--pending">В обработке</span></td>
+              <td class="actions"><a href="#" title="Редактировать">✎</a><a href="#" title="Удалить">✕</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
 
     <footer>
@@ -402,19 +270,27 @@
     function filterTable(query) {
       const rows = document.querySelectorAll('.booking-table tbody tr');
       const q = query.toLowerCase();
+      let count = 0;
       rows.forEach(row => {
         const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(q) ? '' : 'none';
+        const match = text.includes(q);
+        row.style.display = match ? '' : 'none';
+        if (match) count++;
       });
+      document.getElementById('rowCount').textContent = count + ' записей';
     }
 
     function filterStatus(status) {
       const rows = document.querySelectorAll('.booking-table tbody tr');
+      let count = 0;
       rows.forEach(row => {
-        if (!status) { row.style.display = ''; return; }
+        if (!status) { row.style.display = ''; count++; return; }
         const s = row.querySelector('.status').textContent.trim();
-        row.style.display = s === status ? '' : 'none';
+        const match = s === status;
+        row.style.display = match ? '' : 'none';
+        if (match) count++;
       });
+      document.getElementById('rowCount').textContent = count + ' записей';
     }
   </script>
 </body>
