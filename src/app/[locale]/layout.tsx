@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>) {
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as typeof routing.locales[number])) {
     notFound();
   }
 
@@ -34,15 +34,15 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale}>
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <div className="min-h-screen bg-gray-50">
+          <div className="min-h-screen bg-[var(--bg-stone)]">
             <Header />
-            <main className="max-w-[1100px] mx-auto px-6 sm:px-10 py-5 relative z-10">
+            <main className="max-w-[1200px] mx-auto px-8 sm:px-12 py-8 relative z-10 overflow-x-hidden">
               {children}
             </main>
             <Footer />

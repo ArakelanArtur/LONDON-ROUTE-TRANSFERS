@@ -45,8 +45,21 @@
       "p4": "This approach allows us to maintain a consistent level of service, regardless of the transport format and number of passengers."
     },
     "services": {
-      "title": "Transfers and transportation for any task",
-      "subtitle": "We organise journeys across London and beyond — from individual transfers to group and corporate transportation.",
+      "title": "Our Services",
+      "subtitle": "LONDON ROUTE TRANSFERS provides a full range of transportation services for both private clients and corporate partners.",
+      "servicePrivate": "Airport Transfers – Private cars and minibuses for individuals and families.",
+      "serviceCorporate": "Corporate Transport – Business-class vehicles for executives and teams.",
+      "serviceGroup": "Group Transportation – Buses and minibuses for events, conferences, and tours.",
+      "serviceFixed": "Fixed Route Services – Scheduled transfers between key locations.",
+      "keyAdvantagesTitle": "Key advantages of working with us",
+      "keyAdvantages": [
+        "24/7 service and support",
+        "Real-time flight tracking",
+        "Meet & Greet at the airport",
+        "Comfortable and clean vehicles",
+        "Transparent pricing without hidden fees"
+      ],
+      "viewAllLink": "View all services",
       "airport": {
         "title": "Airport Transfer",
         "desc": "Transfers to Heathrow, Gatwick, Stansted, Luton and London City. Airport meet & greet, luggage assistance, arrival time monitoring."
@@ -63,14 +76,15 @@
         "title": "Private Hire",
         "desc": "Weddings, events, city journeys and beyond. Our own fleet reduces reliance on third-party resources and increases order fulfilment stability."
       },
-      "keyAdvantagesTitle": "Key advantages",
-      "keyAdvantages": [
+      "servicesKeyAdvantagesTitle": "Key advantages",
+      "servicesKeyAdvantages": [
         "Executive and business-class vehicles",
         "Minibuses and coaches for groups",
         "Scalability to match order volume",
         "Single operator for different transport formats",
         "Transport adapted to the client's needs"
-      ]
+      ],
+      "bookCta": "Book a Transfer"
     },
     "clients": {
       "title": "Why clients choose LONDON ROUTE TRANSFERS for private and corporate transport",
@@ -78,11 +92,20 @@
       "text": "LONDON ROUTE TRANSFERS is focused on working with various categories of clients — from private customers to companies and organised groups. Our operating model allows us to adapt the transport format to the client's needs, ensuring a consistent level of service and control regardless of order scale.",
       "text2": "We do not offer one-size-fits-all solutions — each journey is built taking into account the client's requirements, the trip format and organisational conditions.",
       "whoTitle": "Who we serve",
-      "whoPrivate": "Private clients: individual trips, airport transfers, family routes and private events.",
-      "whoCorporate": "Corporate clients: companies requiring systematic transport for employees, guests, business meetings and events.",
-      "whoEducation": "Educational institutions: schools, colleges and universities organising trips for students and groups.",
-      "whoTourGroups": "Tour and organised groups: tour operators, groups of travellers and trip organisers.",
-      "whoEvent": "Event organisers: weddings, private events, corporate outings and other events.",
+      "whoPrivateTitle": "Private clients",
+      "whoPrivateDesc": "individual trips, airport transfers, family routes and private events.",
+
+      "whoCorporateTitle": "Corporate clients",
+      "whoCorporateDesc": "companies requiring systematic transport for employees, guests, business meetings and events.",
+
+      "whoEducationTitle": "Educational institutions",
+      "whoEducationDesc": "schools, colleges and universities organising trips for students and groups.",
+
+      "whoTourGroupsTitle": "Tour and organised groups",
+      "whoTourGroupsDesc": "tour operators, groups of travellers and trip organisers.",
+
+      "whoEventTitle": "Event organisers",
+      "whoEventDesc": "weddings, private events, corporate outings and other events.",
       "whyTitle": "Why choose LONDON ROUTE TRANSFERS",
       "whyList": [
         "Registered company in the UK with extensive experience",
@@ -97,6 +120,13 @@
     "contacts": {
       "title": "Contact and Registration Information",
       "subtitle": "LONDON ROUTE TRANSFERS — a transport company registered in the United Kingdom",
+      "labelFullName": "Full Name",
+      "labelLegalForm": "Legal Form",
+      "labelRegistrationNo": "Registration No.",
+      "labelAddress": "Address",
+      "labelVatNo": "VAT No.",
+      "labelPhone": "Phone",
+      "labelEmail": "Email",
       "companyFullName": "LONDON ROUTE TRANSFERS LTD",
       "legalForm": "Private Limited Company, registered in England and Wales",
       "registrationNumber": "00000000",
@@ -140,6 +170,7 @@
       "meetAndGreetNo": "No",
       "notes": "Additional Information",
       "notesPlaceholder": "Luggage, special requirements, comments",
+      "fieldConsent": "Data Processing Consent",
       "consent": "I confirm that I have read the Privacy Policy and Cookie Policy of LONDON ROUTE TRANSFERS and consent to LONDON ROUTE TRANSFERS processing my personal data for the purpose of handling the request and arranging transportation.",
       "submit": "Send Request",
       "sending": "Sending...",
@@ -186,6 +217,7 @@
       "service": "Service",
       "route": "Route",
       "date": "Date",
+      "passengers": "Pax",
       "status": "Status",
       "actions": ""
     },
@@ -195,8 +227,16 @@
     "pending": "Pending",
     "completed": "Completed"
   },
+  "notFound": {
+    "title": "404 — Page Not Found — LONDON ROUTE TRANSFERS",
+    "description": "The page you are looking for does not exist.",
+    "heading": "404",
+    "text": "Page not found",
+    "link": "Go Home"
+  },
   "privacy": {
     "title": "Privacy Policy",
+    "description": "How LONDON ROUTE TRANSFERS processes personal data of website users in accordance with UK GDPR.",
     "section1Title": "1. General Information",
     "section1Text": "This Privacy Policy describes how LONDON ROUTE TRANSFERS processes personal data of website users.\nCompany: LONDON ROUTE TRANSFERS LTD\nJurisdiction: England and Wales\nCompany Number: 00000000\nRegistered Address: 10 Example House, London, United Kingdom\nLONDON ROUTE TRANSFERS is a data controller in accordance with UK GDPR requirements.",
     "section2Title": "2. What Data We Collect",
@@ -220,6 +260,7 @@
   },
   "cookie": {
     "title": "Cookie Policy",
+    "description": "How LONDON ROUTE TRANSFERS uses cookies and similar technologies on the website.",
     "section1Title": "1. General Information",
     "section1Text": "This Cookie Policy explains how LONDON ROUTE TRANSFERS uses cookies and similar technologies on the website.\nThe use of cookies is governed by:\n- UK GDPR;\n- Privacy and Electronic Communications Regulations (PECR).",
     "section2Title": "2. What Are Cookies",
@@ -243,6 +284,7 @@
   },
   "terms": {
     "title": "Terms of Use",
+    "description": "Terms governing access to and use of the LONDON ROUTE TRANSFERS website.",
     "section1Title": "1. General Provisions",
     "section1Text": "These Terms of Use govern access to and use of this website owned by LONDON ROUTE TRANSFERS.\nBy using the website, the user confirms that they have read these Terms and accept them in full.\nIf the user does not agree with the Terms, they must stop using the website.",
     "section2Title": "2. Company Information",
@@ -270,6 +312,7 @@
   },
   "transportTerms": {
     "title": "Transport Service Terms",
+    "description": "Terms governing the provision of transport services by LONDON ROUTE TRANSFERS.",
     "section1Title": "1. General Provisions",
     "section1Text": "These Terms govern the provision of transport services by LONDON ROUTE TRANSFERS.\nBy ordering services, the client confirms agreement with these Terms.",
     "section2Title": "2. Company Information",

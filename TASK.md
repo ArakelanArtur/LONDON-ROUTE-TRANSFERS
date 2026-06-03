@@ -1,0 +1,84 @@
+# TASK.md — Этап 2: Next.js сайт бронирования поездок
+
+## Статус: Завершено
+
+## Цель
+Собрать Next.js приложение транспортной компании LONDON ROUTE TRANSFERS с лендингом, формой бронирования и страницей менеджера на mock-данных.
+
+## Стек
+- Next.js 15 (App Router)
+- React 19, TypeScript
+- Tailwind CSS v4
+- next-intl (мультиязычность EN/RU)
+- react-hook-form + zod (форма и валидация)
+- motion (анимации)
+
+## Выполненные задачи
+
+### 1. Настройка проекта
+- [x] Инициализация Next.js с App Router
+- [x] Подключение Tailwind CSS v4
+- [x] Настройка next-intl (routing, navigation, request, middleware)
+- [x] Создание файлов переводов en.json / ru.json
+- [x] Путь `@/` -> `./src`
+
+### 2. Страницы (routes)
+- [x] `/` — главная лендинговая страница
+- [x] `/services` — страница услуг и преимуществ
+- [x] `/booking` — форма бронирования
+- [x] `/manager` — таблица бронирований (mock)
+- [x] `/privacy` — Политика конфиденциальности
+- [x] `/cookie` — Политика cookies
+- [x] `/terms` — Условия использования
+- [x] `/transport-terms` — Условия оказания транспортных услуг
+- [x] 404 — кастомная страница не найдена
+
+### 3. Компоненты
+- [x] `Header` — навигация + переключатель языка (Server Component)
+- [x] `Footer` — юридическая информация + ссылки (Server Component)
+- [x] `LanguageSwitcher` — клиентский компонент с useTransition
+- [x] `BookingForm` — форма с react-hook-form + zod
+- [x] `BookingTable` — таблица с фильтрацией и поиском
+
+### 4. Форма бронирования
+- [x] Все поля из ТЗ (имя, компания, телефон, email, услуга, pickup, destination, дата, время, пассажиры, meet&greet, комментарий, consent)
+- [x] Валидация через zod schema
+- [x] Перевод ошибок валидации
+- [x] Success state после отправки
+- [x] Состояние isSubmitting (кнопка "Отправка...")
+- [x] Форма не сохраняет данные (независима от mock-списка)
+
+### 5. Mock-бронирования
+- [x] 12 записей в mock-data.ts
+- [x] Типизация (Booking, BookingStatus)
+- [x] Фильтр по статусу
+- [x] Поиск по имени, телефону, маршруту, ID
+- [x] Статистика (total, confirmed, pending, completed)
+- [x] Empty state
+- [x] Анимация появления строк
+
+### 6. i18n
+- [x] Два языка: en (основной), ru
+- [x] Переключатель в шапке
+- [x] Переводы: лендинг, форма, менеджер, юридические страницы, ошибки валидации, статусы
+- [x] generateMetadata с учётом локали
+
+### 7. UI/UX
+- [x] Адаптивный дизайн
+- [x] Анимации через motion (появление, hover, transitions)
+- [x] Современный визуальный стиль
+- [x] Визуальная иерархия
+
+### 8. Архитектура
+- [x] Типы данных вынесены в `src/lib/types.ts`
+- [x] Схема валидации в `src/lib/form-schema.ts`
+- [x] Mock-данные в `src/lib/mock-data.ts`
+- [x] Переводы в `src/messages/{locale}.json`
+- [x] i18n конфиг в `src/i18n/`
+- [x] Server/client components разделены осознанно
+- [x] Импорт Link из `@/i18n/navigation` для локализованных маршрутов
+
+### 9. SEO
+- [x] generateMetadata для всех страниц
+- [x] metadata description для всех страниц
+- [x] Локализованные заголовки страниц

@@ -6,23 +6,14 @@ export interface Booking {
   email: string;
   phone: string;
   service: string;
-  route: string;
-  date: string;
-  status: BookingStatus;
-}
-
-export interface BookingFormData {
-  name: string;
-  company?: string;
-  phone: string;
-  email: string;
-  service: string;
   pickup: string;
   destination: string;
   date: string;
-  time: string;
-  passengers: number;
-  meetAndGreet?: string;
+  status: BookingStatus;
+  company?: string;
+  passengers?: number;
+  meetAndGreet?: boolean;
   notes?: string;
-  consent: boolean;
 }
+
+

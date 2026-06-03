@@ -10,21 +10,22 @@ export const bookingSchema = z.object({
   destination: z.string().min(1, 'destinationRequired'),
   date: z.string().min(1, 'dateRequired'),
   time: z.string().min(1, 'timeRequired'),
-  passengers: z.string().min(1, 'passengersRequired'),
+  passengers: z.coerce.number({ message: 'passengersRequired' }).min(1, 'passengersMin'),
   meetAndGreet: z.string().optional(),
   notes: z.string().optional(),
   consent: z.boolean().refine((val) => val === true, {
     message: 'consentRequired',
   }),
-}).superRefine((data, ctx) => {
-  const passengersNum = parseInt(data.passengers, 10);
-  if (isNaN(passengersNum) || passengersNum < 1) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'passengersMin',
-      path: ['passengers'],
-    });
-  }
 });
 
 export type BookingFormValues = z.infer<typeof bookingSchema>;
+
+export const quickBookingSchema = z.object({
+  destination: z.string().min(1, 'destinationRequired'),
+  date: z.string().min(1, 'dateRequired'),
+  consent: z.boolean().refine((val) => val === true, {
+    message: 'consentRequired',
+  }),
+});
+
+export type QuickBookingFormValues = z.infer<typeof quickBookingSchema>;

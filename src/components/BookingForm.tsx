@@ -1,6 +1,6 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ const defaultValues: BookingFormValues = {
   destination: '',
   date: '',
   time: '',
-  passengers: '1',
+  passengers: 1,
   meetAndGreet: 'no',
   notes: '',
   consent: false,
@@ -33,7 +33,7 @@ export default function BookingForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<BookingFormValues>({
-    resolver: zodResolver(bookingSchema) as any,
+    resolver: zodResolver(bookingSchema) as unknown as Resolver<BookingFormValues>,
     defaultValues,
   });
 
@@ -75,7 +75,7 @@ export default function BookingForm() {
             <input
               {...register('name')}
               placeholder={t('namePlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.name ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -86,7 +86,7 @@ export default function BookingForm() {
             <input
               {...register('company')}
               placeholder={t('companyPlaceholder')}
-              className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors"
+              className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
             />
           </label>
         </div>
@@ -97,7 +97,7 @@ export default function BookingForm() {
               {...register('phone')}
               type="tel"
               placeholder={t('phonePlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.phone ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -109,7 +109,7 @@ export default function BookingForm() {
               {...register('email')}
               type="email"
               placeholder={t('emailPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.email ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -127,7 +127,7 @@ export default function BookingForm() {
             {t('serviceType')}
             <select
               {...register('service')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.service ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             >
@@ -146,7 +146,7 @@ export default function BookingForm() {
               type="number"
               min={1}
               placeholder={t('passengersPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.passengers ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -159,7 +159,7 @@ export default function BookingForm() {
             <input
               {...register('pickup')}
               placeholder={t('pickupPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.pickup ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -170,7 +170,7 @@ export default function BookingForm() {
             <input
               {...register('destination')}
               placeholder={t('destinationPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.destination ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -183,7 +183,7 @@ export default function BookingForm() {
             <input
               {...register('date')}
               type="date"
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.date ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -194,7 +194,7 @@ export default function BookingForm() {
             <input
               {...register('time')}
               type="time"
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors ${
+              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
                 errors.time ? 'border-red-600 bg-red-50' : 'border-gray-300'
               }`}
             />
@@ -205,7 +205,7 @@ export default function BookingForm() {
           {t('meetAndGreet')}
           <select
             {...register('meetAndGreet')}
-            className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors"
+            className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
           >
             <option value="no">{t('meetAndGreetNo')}</option>
             <option value="yes">{t('meetAndGreetYes')}</option>
@@ -217,20 +217,20 @@ export default function BookingForm() {
             {...register('notes')}
             rows={3}
             placeholder={t('notesPlaceholder')}
-            className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors"
+            className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
           />
         </label>
       </fieldset>
 
       <fieldset className="border-none p-0 mb-7">
         <legend className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-4">
-          Data Processing Consent
+          {t('fieldConsent')}
         </legend>
         <label className="flex items-start gap-2.5 text-sm text-gray-700 cursor-pointer">
           <input
             {...register('consent')}
             type="checkbox"
-            className="mt-1 shrink-0 w-4 h-4 accent-gold"
+            className="mt-1 shrink-0 w-4 h-4 accent-[var(--brand-burgundy)]"
           />
           <span className="leading-relaxed text-xs">
             {t('consent')}

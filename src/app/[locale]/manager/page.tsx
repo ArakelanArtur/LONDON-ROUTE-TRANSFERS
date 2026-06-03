@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import BookingTable from '@/components/BookingTable';
+import NewBookingButton from '@/components/NewBookingButton';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -18,14 +19,9 @@ export default async function ManagerPage() {
       <div className="flex items-center justify-between gap-5 mb-8 flex-wrap">
         <div className="text-center sm:text-left">
           <h2 className="font-serif text-2xl text-gray-900 mb-1">{t('title')}</h2>
-          <p className="text-gold text-sm">{t('subtitle')}</p>
+          <p className="text-[var(--brand-burgundy)] text-sm">{t('subtitle')}</p>
         </div>
-        <button
-          onClick={() => alert('Create new booking')}
-          className="font-serif px-7 py-2.5 bg-black text-white border-none rounded-lg text-sm cursor-pointer transition-all duration-200 hover:bg-gold hover:-translate-y-0.5 hover:shadow-md"
-        >
-          {t('newBooking')}
-        </button>
+        <NewBookingButton />
       </div>
 
       <BookingTable />

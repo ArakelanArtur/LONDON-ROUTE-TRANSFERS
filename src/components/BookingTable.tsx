@@ -26,7 +26,8 @@ export default function BookingTable() {
         (b) =>
           b.clientName.toLowerCase().includes(q) ||
           b.phone.includes(q) ||
-          b.route.toLowerCase().includes(q) ||
+          b.pickup.toLowerCase().includes(q) ||
+          b.destination.toLowerCase().includes(q) ||
           b.id.toLowerCase().includes(q)
       );
     }
@@ -73,12 +74,12 @@ export default function BookingTable() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t('searchPlaceholder')}
-            className="flex-1 min-w-[200px] px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors"
+            className="flex-1 min-w-[200px] px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="min-w-[160px] px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-gold transition-colors"
+            className="min-w-[160px] px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
           >
             <option value="">{t('allStatuses')}</option>
             <option value="confirmed">{t('statusConfirmed')}</option>
@@ -102,6 +103,7 @@ export default function BookingTable() {
               <th className="text-left px-3 py-2.5 font-bold text-[0.75rem] tracking-wide hidden md:table-cell">{t('table.service')}</th>
               <th className="text-left px-3 py-2.5 font-bold text-[0.75rem] tracking-wide hidden lg:table-cell">{t('table.route')}</th>
               <th className="text-left px-3 py-2.5 font-bold text-[0.75rem] tracking-wide hidden sm:table-cell">{t('table.date')}</th>
+              <th className="text-left px-3 py-2.5 font-bold text-[0.75rem] tracking-wide hidden xl:table-cell">{t('table.passengers')}</th>
               <th className="text-left px-3 py-2.5 font-bold text-[0.75rem] tracking-wide">{t('table.status')}</th>
               <th className="px-3 py-2.5">{t('table.actions')}</th>
             </tr>
@@ -109,7 +111,7 @@ export default function BookingTable() {
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-4 py-12 text-center text-gray-500">
+                <td colSpan={9} className="px-4 py-12 text-center text-gray-500">
                   {t('empty')}
                 </td>
               </tr>
@@ -122,15 +124,16 @@ export default function BookingTable() {
                   transition={{ delay: idx * 0.03 }}
                   className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                 >
-                  <td className="px-3 py-2.5 font-semibold text-gold text-[0.8rem]">{booking.id}</td>
+                  <td className="px-3 py-2.5 font-semibold text-[var(--brand-burgundy)] text-[0.8rem]">{booking.id}</td>
                   <td className="px-3 py-2.5">
                     <div className="font-semibold text-gray-900">{booking.clientName}</div>
                     <div className="text-[0.7rem] text-gray-400">{booking.email}</div>
                   </td>
                   <td className="px-3 py-2.5 text-gray-700 hidden sm:table-cell">{booking.phone}</td>
                   <td className="px-3 py-2.5 text-gray-700 hidden md:table-cell">{booking.service}</td>
-                  <td className="px-3 py-2.5 text-gray-700 hidden lg:table-cell">{booking.route}</td>
+                  <td className="px-3 py-2.5 text-gray-700 hidden lg:table-cell">{booking.pickup} → {booking.destination}</td>
                   <td className="px-3 py-2.5 text-gray-700 hidden sm:table-cell whitespace-nowrap">{booking.date}</td>
+                  <td className="px-3 py-2.5 text-gray-700 hidden xl:table-cell">{booking.passengers ?? '—'}</td>
                   <td className="px-3 py-2.5">
                     <span className={`inline-block px-2.5 py-1 rounded-full text-[0.7rem] font-bold ${statusStyles[booking.status]}`}>
                       {booking.status === 'confirmed' && t('statusConfirmed')}
@@ -140,7 +143,7 @@ export default function BookingTable() {
                     </span>
                   </td>
                   <td className="px-3 py-2.5 text-center">
-                    <span className="text-gold text-xs cursor-pointer hover:bg-gold hover:text-white px-2 py-1 rounded transition-colors inline-block">
+                    <span className="text-[var(--brand-burgundy)] text-xs cursor-pointer hover:bg-[var(--brand-burgundy)] hover:text-white px-2 py-1 rounded transition-colors inline-block">
                       ✎
                     </span>
                   </td>

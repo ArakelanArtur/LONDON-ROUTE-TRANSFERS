@@ -5,6 +5,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'terms' });
   return {
     title: `${t('title')} — LONDON ROUTE TRANSFERS`,
+    description: t('description'),
   };
 }
 
