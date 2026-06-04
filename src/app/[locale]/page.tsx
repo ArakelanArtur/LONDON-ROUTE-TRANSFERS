@@ -1,5 +1,4 @@
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
 import Hero from '@/components/Hero';
 import QuickBookingForm from '@/components/QuickBookingForm';
 import KeyAdvantages from '@/components/KeyAdvantages';
@@ -78,13 +77,6 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
-
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 mt-6 sm:mt-8 text-xs sm:text-sm text-[var(--brand-burgundy)] no-underline hover:text-[var(--brand-navy)] font-semibold uppercase tracking-widest"
-          >
-            {s('viewAllLink')} <span className="text-base sm:text-lg">→</span>
-          </Link>
         </section>
 
       </div>{/* end container */}
