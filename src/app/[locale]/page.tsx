@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Hero from '@/components/Hero';
 import QuickBookingForm from '@/components/QuickBookingForm';
+import KeyAdvantages from '@/components/KeyAdvantages';
+import WhoWeServe from '@/components/WhoWeServe';
+import WhyChooseUs from '@/components/WhyChooseUs';
 
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -21,10 +24,10 @@ export default async function HomePage() {
   const ct = await getTranslations('home.contacts');
 
   const services = [
-    { key: 'airport' },
-    { key: 'corporate' },
-    { key: 'group' },
-    { key: 'private' },
+    { key: 'airport', img: 'aiplan.png' },
+    { key: 'corporate', img: 'car.png' },
+    { key: 'group', img: 'bass.png' },
+    { key: 'private', img: 'lodca.png' },
   ] as const;
 
   return (
@@ -33,95 +36,112 @@ export default async function HomePage() {
 
       <QuickBookingForm />
 
-      <section className="mb-16">
-        <h2 className="font-serif text-3xl mb-3 text-gray-900">{a('title')}</h2>
-        <p className="text-base text-[var(--brand-burgundy)] mb-6">{a('subtitle')}</p>
-        <div className="text-base text-gray-700 leading-relaxed space-y-4">
-          <p>{a('p1')}</p>
-          <p>{a('p2')}</p>
-          <p>{a('p3')}</p>
-          <p>{a('p4')}</p>
-        </div>
-      </section>
+      {/* Content inside container */}
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 md:px-12 py-8 sm:py-10">
 
-      <section id="services" className="mb-16">
-        <h2 className="font-serif text-3xl mb-3 text-gray-900">{s('title')}</h2>
-        <p className="text-base text-[var(--brand-burgundy)] mb-8">{s('subtitle')}</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-          {services.map((svc) => (
-            <div key={svc.key} className="bg-white border border-gray-200 p-8">
-              <h3 className="font-serif font-bold text-lg mb-4 text-gray-900">{s(`${svc.key}.title`)}</h3>
-              <p className="text-base text-gray-700 leading-relaxed">{s(`${svc.key}.desc`)}</p>
+        {/* About section */}
+        <section className="mb-12 sm:mb-20">
+          <div className="w-10 sm:w-12 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-6" />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl mb-2 text-[var(--brand-navy)]">{a('title')}</h2>
+          <p className="text-xs sm:text-sm text-[var(--brand-burgundy)] mb-6 sm:mb-8 uppercase tracking-widest font-medium">{a('subtitle')}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-center">
+            <div className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed space-y-4 sm:space-y-5">
+              <p>{a('p1')}</p>
+              <p>{a('p2')}</p>
+              <p>{a('p3')}</p>
+              <p>{a('p4')}</p>
             </div>
-          ))}
-        </div>
-        <h3 className="font-serif text-xl mb-4 text-gray-900">{s('keyAdvantagesTitle')}</h3>
-        <ul className="text-base text-gray-700 space-y-2 list-disc pl-6">
-          {(s.raw('keyAdvantages') as string[]).map((adv: string, i: number) => (
-            <li key={i}>{adv}</li>
-          ))}
-        </ul>
-        <Link
-          href="/services"
-          className="inline-block mt-8 text-base text-[var(--brand-burgundy)] no-underline hover:text-[var(--brand-navy)] transition-all duration-500 ease-in-out font-bold"
-        >
-          {s('viewAllLink')} →
-        </Link>
-      </section>
-
-      <section className="mb-16">
-        <h2 className="font-serif text-3xl mb-3 text-gray-900">{c('title')}</h2>
-        <p className="text-base text-[var(--brand-burgundy)] mb-6">{c('subtitle')}</p>
-        <div className="text-base text-gray-700 leading-relaxed space-y-4 mb-8">
-          <p>{c('text')}</p>
-          <p>{c('text2')}</p>
-        </div>
-
-        <h3 className="font-serif text-2xl mb-4 text-gray-900">{c('whoTitle')}</h3>
-        <ul className="text-base text-gray-700 space-y-2 list-disc pl-6 mb-8">
-          {([
-            { title: c('whoPrivateTitle'), desc: c('whoPrivateDesc') },
-            { title: c('whoCorporateTitle'), desc: c('whoCorporateDesc') },
-            { title: c('whoEducationTitle'), desc: c('whoEducationDesc') },
-            { title: c('whoTourGroupsTitle'), desc: c('whoTourGroupsDesc') },
-            { title: c('whoEventTitle'), desc: c('whoEventDesc') },
-          ] as const).map((item, i) => (
-            <li key={i}>
-              <strong className="text-gray-900">{item.title}</strong>: {item.desc}
-            </li>
-          ))}
-        </ul>
-
-        <h3 className="font-serif text-xl mb-4 text-gray-900">{c('whyTitle')}</h3>
-        <ul className="text-base text-gray-700 space-y-2 list-disc pl-6">
-          {(c.raw('whyList') as string[]).map((item: string, i: number) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section id="contacts" className="mb-16">
-        <h2 className="font-serif text-3xl mb-3 text-gray-900">{ct('title')}</h2>
-        <p className="text-base text-[var(--brand-burgundy)] mb-6">{ct('subtitle')}</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className="bg-white border border-gray-200 p-8">
-            <dl className="space-y-3">
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelFullName')}</dt><dd className="text-base text-gray-900">{ct('companyFullName')}</dd></div>
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelLegalForm')}</dt><dd className="text-base text-gray-900">{ct('legalForm')}</dd></div>
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelRegistrationNo')}</dt><dd className="text-base text-gray-900">{ct('registrationNumber')}</dd></div>
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelAddress')}</dt><dd className="text-base text-gray-900">{ct('registeredAddress')}</dd></div>
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelVatNo')}</dt><dd className="text-base text-gray-900">{ct('vatNumber')}</dd></div>
-            </dl>
+            <div className="relative h-48 sm:h-64 md:h-96 overflow-hidden rounded-sm border border-[var(--brand-gold)]/20">
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/baza.png)' }} />
+              <div className="absolute inset-0 bg-[var(--brand-navy)]/10" />
+            </div>
           </div>
-          <div className="bg-white border border-gray-200 p-8">
-            <dl className="space-y-3">
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelPhone')}</dt><dd className="text-base text-gray-900">{ct('phone')}</dd></div>
-              <div><dt className="text-sm font-bold text-gray-500 uppercase">{ct('labelEmail')}</dt><dd className="text-base text-gray-900">{ct('email')}</dd></div>
-            </dl>
-            <p className="text-sm text-gray-400 italic mt-4">{ct('note')}</p>
+        </section>
+
+        {/* Services section */}
+        <section id="services" className="mb-12 sm:mb-20">
+          <div className="w-10 sm:w-12 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-6" />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl mb-2 text-[var(--brand-navy)]">{s('title')}</h2>
+          <p className="text-xs sm:text-sm text-[var(--brand-burgundy)] mb-8 sm:mb-10 uppercase tracking-widest font-medium">{s('subtitle')}</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-8 sm:mb-12">
+            {services.map((svc) => (
+              <div key={svc.key} className="bg-white border border-gray-200/80 overflow-hidden rounded-sm group hover:shadow-lg transition-shadow duration-300">
+                <div className="h-36 sm:h-52 bg-cover bg-center relative" style={{ backgroundImage: `url(/images/${svc.img})` }}>
+                  <div className="absolute inset-0 bg-[var(--brand-navy)]/20 group-hover:bg-[var(--brand-navy)]/10 transition-colors" />
+                </div>
+                <div className="p-5 sm:p-7">
+                  <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+                  <h3 className="font-serif font-bold text-base sm:text-lg mb-2 sm:mb-3 text-[var(--brand-navy)]">{s(`${svc.key}.title`)}</h3>
+                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">{s(`${svc.key}.desc`)}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
+
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 mt-6 sm:mt-8 text-xs sm:text-sm text-[var(--brand-burgundy)] no-underline hover:text-[var(--brand-navy)] font-semibold uppercase tracking-widest"
+          >
+            {s('viewAllLink')} <span className="text-base sm:text-lg">→</span>
+          </Link>
+        </section>
+
+      </div>{/* end container */}
+
+      {/* Key Advantages — full-width dark section */}
+      <KeyAdvantages />
+
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 md:px-12 py-8 sm:py-10">
+
+        {/* Clients section — text + WhoWeServe */}
+        <section className="mb-8 sm:mb-12">
+          <div className="w-10 sm:w-12 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-6" />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl mb-2 text-[var(--brand-navy)]">{c('title')}</h2>
+          <p className="text-xs sm:text-sm text-[var(--brand-burgundy)] mb-6 sm:mb-8 uppercase tracking-widest font-medium">{c('subtitle')}</p>
+          <div className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed space-y-4 sm:space-y-5">
+            <p>{c('text')}</p>
+            <p>{c('text2')}</p>
+          </div>
+        </section>
+
+      </div>{/* end container */}
+
+      {/* Who We Serve + Why choose us — склеенные full-width тёмные секции */}
+      <WhoWeServe />
+      <WhyChooseUs />
+
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 md:px-12 py-8 sm:py-10">
+
+        {/* Contacts section */}
+        <section id="contacts" className="mb-10 sm:mb-16">
+          <div className="w-10 sm:w-12 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-6" />
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl mb-2 text-[var(--brand-navy)]">{ct('title')}</h2>
+          <p className="text-xs sm:text-sm text-[var(--brand-burgundy)] mb-8 sm:mb-10 uppercase tracking-widest font-medium">{ct('subtitle')}</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            <div className="bg-white border border-gray-200/80 p-5 sm:p-8 rounded-sm">
+              <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-5" />
+              <dl className="space-y-3 sm:space-y-4">
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelFullName')}</dt><dd className="text-xs sm:text-sm text-[var(--brand-navy)] font-medium">{ct('companyFullName')}</dd></div>
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelLegalForm')}</dt><dd className="text-xs sm:text-sm text-[var(--text-secondary)]">{ct('legalForm')}</dd></div>
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelRegistrationNo')}</dt><dd className="text-xs sm:text-sm text-[var(--text-secondary)]">{ct('registrationNumber')}</dd></div>
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelAddress')}</dt><dd className="text-xs sm:text-sm text-[var(--text-secondary)]">{ct('registeredAddress')}</dd></div>
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelVatNo')}</dt><dd className="text-xs sm:text-sm text-[var(--text-secondary)]">{ct('vatNumber')}</dd></div>
+              </dl>
+            </div>
+            <div className="bg-white border border-gray-200/80 p-5 sm:p-8 rounded-sm">
+              <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-5" />
+              <dl className="space-y-3 sm:space-y-4">
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelPhone')}</dt><dd className="text-xs sm:text-sm text-[var(--brand-navy)] font-medium">{ct('phone')}</dd></div>
+                <div><dt className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-1">{ct('labelEmail')}</dt><dd className="text-xs sm:text-sm text-[var(--brand-navy)] font-medium">{ct('email')}</dd></div>
+              </dl>
+              <p className="text-[0.65rem] sm:text-xs text-[var(--text-muted)] italic mt-4 sm:mt-6 leading-relaxed">{ct('note')}</p>
+            </div>
+          </div>
+        </section>
+
+      </div>{/* end container */}
     </div>
   );
 }

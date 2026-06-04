@@ -1,6 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-
+import Image from 'next/image';
+import KeyAdvantages from '@/components/KeyAdvantages';
+import WhoWeServe from '@/components/WhoWeServe';
+import WhyChooseUs from '@/components/WhyChooseUs';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,40 +14,70 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+const services = [
+  { key: 'airport', img: 'aiplan.png' },
+  { key: 'corporate', img: 'car.png' },
+  { key: 'group', img: 'bass.png' },
+  { key: 'private', img: 'lodca.png' },
+] as const;
+
 export default async function ServicesPage() {
   const s = await getTranslations('home.services');
 
-  const services = ['airport', 'corporate', 'group', 'private'] as const;
-
   return (
     <div>
-      <h1 className="font-serif text-4xl md:text-5xl leading-tight mb-3 text-gray-900">
-        {s('title')}
-      </h1>
-      <p className="text-base text-[var(--brand-burgundy)] mb-10">{s('subtitle')}</p>
+      {/* Hero banner */}
+      <section className="relative mb-10 sm:mb-16 h-48 sm:h-64 md:h-80 rounded-sm overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/london-bg.jpg)' }} />
+        <div className="absolute inset-0 bg-[var(--brand-navy)]/70" />
+        <div className="relative z-10 p-6 sm:p-10 md:p-16 flex flex-col justify-end h-full">
+          <div className="w-8 sm:w-10 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-2 sm:mb-3 text-white">
+            {s('title')}
+          </h1>
+          <p className="text-[0.65rem] sm:text-sm text-white/70 uppercase tracking-widest">{s('subtitle')}</p>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-        {services.map((key) => (
-          <div key={key} className="bg-white border border-gray-200 p-8">
-            <h2 className="font-serif font-bold text-lg mb-4 text-gray-900">{s(`${key}.title`)}</h2>
-            <p className="text-base text-gray-700 leading-relaxed">{s(`${key}.desc`)}</p>
+      {/* Service cards — 2 колонки, карточки уже */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-16 max-w-[900px] mx-auto">
+        {services.map((item) => (
+          <div key={item.key} className="bg-white border border-gray-200/80 overflow-hidden rounded-sm group hover:shadow-lg transition-shadow duration-300">
+            <div className="relative w-full h-52 sm:h-60 md:h-72 bg-white flex items-center justify-center p-3 sm:p-5">
+              <Image
+                src={`/images/${item.img}`}
+                alt={s(`${item.key}.title`)}
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="p-5 sm:p-7">
+              <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+              <h2 className="font-serif font-bold text-base sm:text-lg mb-2 sm:mb-3 text-[var(--brand-navy)]">{s(`${item.key}.title`)}</h2>
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">{s(`${item.key}.desc`)}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      <h2 className="font-serif text-2xl mb-4 text-gray-900">{s('servicesKeyAdvantagesTitle')}</h2>
-      <ul className="text-base text-gray-700 space-y-2 list-disc pl-6 mb-12">
-        {(s.raw('servicesKeyAdvantages') as string[]).map((adv: string, i: number) => (
-          <li key={i}>{adv}</li>
-        ))}
-      </ul>
+      {/* Key advantages — shared component */}
+      <KeyAdvantages />
 
-      <Link
-        href="/booking"
-        className="inline-block px-10 py-4 bg-[var(--brand-burgundy)] text-white rounded-md text-base no-underline font-serif tracking-tight transition-all duration-500 ease-in-out hover:bg-[var(--brand-navy)]"
-      >
-        {s('bookCta')}
-      </Link>
+      {/* Who we serve — shared component */}
+      <WhoWeServe />
+
+      {/* Why choose us — shared component */}
+      <WhyChooseUs />
+
+      {/* CTA */}
+      <div className="text-center pb-8 sm:pb-10">
+        <Link
+          href="/booking"
+          className="inline-flex items-center gap-3 px-7 sm:px-10 py-3.5 sm:py-4 bg-[var(--brand-navy)] text-[var(--brand-gold)] rounded-sm text-xs sm:text-sm no-underline font-serif tracking-wide font-semibold uppercase hover:bg-[var(--brand-gold)] hover:text-[var(--brand-navy)] transition-colors"
+        >
+          {s('bookCta')} <span className="text-base sm:text-lg">→</span>
+        </Link>
+      </div>
     </div>
   );
 }

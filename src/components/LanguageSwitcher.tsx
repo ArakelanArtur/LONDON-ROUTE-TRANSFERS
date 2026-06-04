@@ -29,10 +29,10 @@ export default function LanguageSwitcher() {
           key={lang.code}
           onClick={() => switchLocale(lang.code)}
           disabled={isPending}
-          className={`text-base font-semibold transition-all cursor-pointer disabled:opacity-50 border-none rounded-md px-3 py-1.5 font-[system-ui] ${
+          className={`text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider cursor-pointer disabled:opacity-50 border rounded-sm px-3 sm:px-2.5 py-1.5 sm:py-1 font-[system-ui] transition-all ${
             locale === lang.code
-              ? 'text-white bg-[var(--brand-burgundy)]'
-              : 'text-black bg-gray-100 hover:bg-gray-200'
+              ? 'text-[var(--brand-navy)] bg-[var(--brand-gold)] border-[var(--brand-gold)]'
+              : 'text-[var(--brand-gold-light)] bg-transparent border-[var(--brand-gold)]/40 hover:border-[var(--brand-gold)] hover:text-white'
           }`}
         >
           {lang.label}

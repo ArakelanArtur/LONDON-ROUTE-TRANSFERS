@@ -50,201 +50,136 @@ export default function BookingForm() {
   if (submitted) {
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="max-w-[700px] mx-auto bg-white p-8 border border-gray-200 rounded-lg text-center"
+        className="max-w-[700px] mx-auto bg-[var(--brand-navy)] p-6 sm:p-10 border border-[var(--brand-gold)]/30 rounded-sm text-center"
       >
-        <div className="text-5xl mb-4">✓</div>
-        <h2 className="font-serif text-2xl text-gray-900 mb-2">
+        <div className="w-10 h-0.5 bg-[var(--brand-gold)] mx-auto mb-4" />
+        <div className="text-3xl sm:text-4xl mb-4 text-[var(--brand-gold)]">✓</div>
+        <h2 className="font-serif text-xl sm:text-2xl text-white mb-2">
           {t('success')}
         </h2>
-        <p className="text-gray-600">{t('successText')}</p>
+        <p className="text-xs sm:text-sm text-[var(--bg-cream)]/60">{t('successText')}</p>
       </motion.div>
     );
   }
 
+  const inputCls = (hasError: boolean) =>
+    `block w-full mt-1.5 px-3 sm:px-4 py-2.5 border rounded-sm text-sm bg-[var(--brand-navy-light)] text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--brand-gold)] transition-colors ${
+      hasError ? 'border-[var(--brand-burgundy)] bg-[var(--brand-burgundy)]/10' : 'border-[var(--brand-gold)]/20'
+    }`;
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-[700px] mx-auto bg-white p-8 border border-gray-200 rounded-lg" noValidate>
-      <fieldset className="border-none p-0 mb-7">
-        <legend className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-[700px] mx-auto bg-white border border-gray-200/80 rounded-sm p-5 sm:p-8 md:p-10" noValidate>
+      {/* Contact Info */}
+      <fieldset className="border-none p-0 mb-8 sm:mb-10">
+        <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+        <legend className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-4 sm:mb-5">
           {t('contactInfo')}
         </legend>
-        <div className="flex gap-5 mb-6 flex-col sm:flex-row">
-          <label className="flex-1 block text-sm text-gray-700">
+        <div className="flex gap-4 sm:gap-5 mb-4 sm:mb-5 flex-col sm:flex-row">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('name')}
-            <input
-              {...register('name')}
-              placeholder={t('namePlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.name ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('name') && <span className="block text-xs text-red-600 mt-1">{getError('name')}</span>}
+            <input {...register('name')} placeholder={t('namePlaceholder')} className={inputCls(!!errors.name)} />
+            {getError('name') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('name')}</span>}
           </label>
-          <label className="flex-1 block text-sm text-gray-700">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('company')}
-            <input
-              {...register('company')}
-              placeholder={t('companyPlaceholder')}
-              className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
-            />
+            <input {...register('company')} placeholder={t('companyPlaceholder')} className={inputCls(false)} />
           </label>
         </div>
-        <div className="flex gap-5 mb-6 flex-col sm:flex-row">
-          <label className="flex-1 block text-sm text-gray-700">
+        <div className="flex gap-4 sm:gap-5 mb-4 sm:mb-5 flex-col sm:flex-row">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('phone')}
-            <input
-              {...register('phone')}
-              type="tel"
-              placeholder={t('phonePlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.phone ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('phone') && <span className="block text-xs text-red-600 mt-1">{getError('phone')}</span>}
+            <input {...register('phone')} type="tel" placeholder={t('phonePlaceholder')} className={inputCls(!!errors.phone)} />
+            {getError('phone') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('phone')}</span>}
           </label>
-          <label className="flex-1 block text-sm text-gray-700">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('email')}
-            <input
-              {...register('email')}
-              type="email"
-              placeholder={t('emailPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.email ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('email') && <span className="block text-xs text-red-600 mt-1">{getError('email')}</span>}
+            <input {...register('email')} type="email" placeholder={t('emailPlaceholder')} className={inputCls(!!errors.email)} />
+            {getError('email') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('email')}</span>}
           </label>
         </div>
       </fieldset>
 
-      <fieldset className="border-none p-0 mb-7">
-        <legend className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-4">
+      {/* Trip Details */}
+      <fieldset className="border-none p-0 mb-8 sm:mb-10">
+        <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+        <legend className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-4 sm:mb-5">
           {t('tripDetails')}
         </legend>
-        <div className="flex gap-5 mb-6 flex-col sm:flex-row">
-          <label className="flex-1 block text-sm text-gray-700">
+        <div className="flex gap-4 sm:gap-5 mb-4 sm:mb-5 flex-col sm:flex-row">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('serviceType')}
-            <select
-              {...register('service')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.service ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            >
+            <select {...register('service')} className={inputCls(!!errors.service)}>
               <option value="">{t('servicePlaceholder')}</option>
               <option value="airport">{t('serviceAirport')}</option>
               <option value="corporate">{t('serviceCorporate')}</option>
               <option value="group">{t('serviceGroup')}</option>
               <option value="private">{t('servicePrivate')}</option>
             </select>
-            {getError('service') && <span className="block text-xs text-red-600 mt-1">{getError('service')}</span>}
+            {getError('service') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('service')}</span>}
           </label>
-          <label className="flex-1 block text-sm text-gray-700">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('passengers')}
-            <input
-              {...register('passengers')}
-              type="number"
-              min={1}
-              placeholder={t('passengersPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.passengers ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('passengers') && <span className="block text-xs text-red-600 mt-1">{getError('passengers')}</span>}
+            <input {...register('passengers')} type="number" min={1} placeholder={t('passengersPlaceholder')} className={inputCls(!!errors.passengers)} />
+            {getError('passengers') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('passengers')}</span>}
           </label>
         </div>
-        <div className="flex gap-5 mb-6 flex-col sm:flex-row">
-          <label className="flex-1 block text-sm text-gray-700">
+        <div className="flex gap-4 sm:gap-5 mb-4 sm:mb-5 flex-col sm:flex-row">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('pickup')}
-            <input
-              {...register('pickup')}
-              placeholder={t('pickupPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.pickup ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('pickup') && <span className="block text-xs text-red-600 mt-1">{getError('pickup')}</span>}
+            <input {...register('pickup')} placeholder={t('pickupPlaceholder')} className={inputCls(!!errors.pickup)} />
+            {getError('pickup') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('pickup')}</span>}
           </label>
-          <label className="flex-1 block text-sm text-gray-700">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('destination')}
-            <input
-              {...register('destination')}
-              placeholder={t('destinationPlaceholder')}
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.destination ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('destination') && <span className="block text-xs text-red-600 mt-1">{getError('destination')}</span>}
+            <input {...register('destination')} placeholder={t('destinationPlaceholder')} className={inputCls(!!errors.destination)} />
+            {getError('destination') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('destination')}</span>}
           </label>
         </div>
-        <div className="flex gap-5 mb-6 flex-col sm:flex-row">
-          <label className="flex-1 block text-sm text-gray-700">
+        <div className="flex gap-4 sm:gap-5 mb-4 sm:mb-5 flex-col sm:flex-row">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('date')}
-            <input
-              {...register('date')}
-              type="date"
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.date ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('date') && <span className="block text-xs text-red-600 mt-1">{getError('date')}</span>}
+            <input {...register('date')} type="date" className={inputCls(!!errors.date)} />
+            {getError('date') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('date')}</span>}
           </label>
-          <label className="flex-1 block text-sm text-gray-700">
+          <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('time')}
-            <input
-              {...register('time')}
-              type="time"
-              className={`block w-full mt-1.5 px-3.5 py-2.5 border rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors ${
-                errors.time ? 'border-red-600 bg-red-50' : 'border-gray-300'
-              }`}
-            />
-            {getError('time') && <span className="block text-xs text-red-600 mt-1">{getError('time')}</span>}
+            <input {...register('time')} type="time" className={inputCls(!!errors.time)} />
+            {getError('time') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('time')}</span>}
           </label>
         </div>
-        <label className="block text-sm text-gray-700 mb-4">
+        <label className="block text-[0.7rem] sm:text-xs text-[var(--text-secondary)] mb-4">
           {t('meetAndGreet')}
-          <select
-            {...register('meetAndGreet')}
-            className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
-          >
+          <select {...register('meetAndGreet')} className={inputCls(false)}>
             <option value="no">{t('meetAndGreetNo')}</option>
             <option value="yes">{t('meetAndGreetYes')}</option>
           </select>
         </label>
-        <label className="block text-sm text-gray-700">
+        <label className="block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
           {t('notes')}
-          <textarea
-            {...register('notes')}
-            rows={3}
-            placeholder={t('notesPlaceholder')}
-            className="block w-full mt-1.5 px-3.5 py-2.5 border border-gray-300 rounded text-sm bg-white text-gray-800 focus:outline-none focus:border-[var(--brand-navy)] transition-colors"
-          />
+          <textarea {...register('notes')} rows={3} placeholder={t('notesPlaceholder')} className={`${inputCls(false)} resize-none`} />
         </label>
       </fieldset>
 
-      <fieldset className="border-none p-0 mb-7">
-        <legend className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-4">
+      {/* Consent */}
+      <fieldset className="border-none p-0 mb-6 sm:mb-8">
+        <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+        <legend className="text-[0.6rem] sm:text-[0.65rem] font-bold text-[var(--brand-gold)] uppercase tracking-widest mb-3 sm:mb-4">
           {t('fieldConsent')}
         </legend>
-        <label className="flex items-start gap-2.5 text-sm text-gray-700 cursor-pointer">
-          <input
-            {...register('consent')}
-            type="checkbox"
-            className="mt-1 shrink-0 w-4 h-4 accent-[var(--brand-burgundy)]"
-          />
-          <span className="leading-relaxed text-xs">
-            {t('consent')}
-          </span>
+        <label className="flex items-start gap-3 text-[0.65rem] sm:text-xs text-[var(--text-secondary)] cursor-pointer">
+          <input {...register('consent')} type="checkbox" className="mt-1 shrink-0 w-4 h-4 accent-[var(--brand-gold)]" />
+          <span className="leading-relaxed">{t('consent')}</span>
         </label>
-        {getError('consent') && (
-          <span className="block text-xs text-red-600 mt-1">{getError('consent')}</span>
-        )}
+        {getError('consent') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-2">{getError('consent')}</span>}
       </fieldset>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="font-serif inline-block px-9 py-3.5 bg-black text-white border-none rounded-md text-base cursor-pointer transition-all duration-200 hover:bg-gray-800 disabled:opacity-50"
+        className="font-serif w-full px-6 sm:px-10 py-3.5 sm:py-4 bg-[var(--brand-navy)] text-[var(--brand-gold)] border border-[var(--brand-gold)]/40 rounded-sm text-sm sm:text-base cursor-pointer transition-colors hover:bg-[var(--brand-gold)] hover:text-[var(--brand-navy)] disabled:opacity-50"
       >
         {isSubmitting ? t('sending') : t('submit')}
       </button>

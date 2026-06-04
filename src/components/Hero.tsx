@@ -6,29 +6,31 @@ interface HeroProps {
 
 export default function Hero({ t }: HeroProps) {
   return (
-    <section className="relative mb-16 pb-6 border-b border-[var(--text-main)]/10">
+    <section className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[600px] flex items-end w-full">
       <div
-        className="absolute inset-0 bg-cover bg-center rounded-md"
-        style={{ backgroundImage: 'url(/images/aiplan.png)' }}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/images/london-bg.jpg)' }}
       />
-      <div className="absolute inset-0 bg-black/50 rounded-md" />
-      <div className="relative z-10 p-10 md:p-16">
-        <h1 className="font-serif text-5xl md:text-6xl leading-tight mb-6 text-white tracking-tight">
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-navy)] via-[var(--brand-navy)]/60 to-[var(--brand-navy)]/20" />
+      <div className="relative z-10 w-full pb-10 sm:pb-14 pt-20 sm:pt-24 px-5 sm:px-8 md:px-16 lg:px-24">
+        {/* Gold accent line */}
+        <div className="w-10 sm:w-16 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-6" />
+        <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 sm:mb-5 text-white tracking-tight max-w-3xl">
           {t('heading')}
         </h1>
-        <p className="text-lg text-white/80 mb-3 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-lg md:text-xl text-white/80 mb-2 max-w-2xl leading-relaxed">
           {t('subheading')}
         </p>
-        <p className="text-base text-white/60 mb-10 max-w-3xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-white/50 mb-6 sm:mb-10 max-w-2xl leading-relaxed">
           {t('text')}
         </p>
         <Link
           href="/booking"
-          className="inline-block px-10 py-4 bg-[var(--brand-burgundy)] text-white rounded-md text-lg no-underline font-serif tracking-tight transition-all duration-500 ease-in-out hover:bg-[var(--brand-navy)]"
+          className="inline-block px-7 sm:px-10 py-3 sm:py-4 bg-[var(--brand-gold)] text-[var(--brand-navy)] rounded-sm text-sm sm:text-base no-underline font-serif tracking-wide font-semibold hover:bg-[var(--brand-gold-light)]"
         >
           {t('cta')}
         </Link>
-        <p className="text-sm text-white/50 mt-4">{t('underCta')}</p>
+        <p className="text-[0.65rem] sm:text-xs text-white/40 mt-3 sm:mt-4 tracking-wide">{t('underCta')}</p>
       </div>
     </section>
   );

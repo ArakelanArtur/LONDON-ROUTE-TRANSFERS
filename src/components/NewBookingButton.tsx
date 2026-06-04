@@ -8,7 +8,7 @@ export default function NewBookingButton() {
   return (
     <Link
       href="/booking"
-      className="font-serif px-7 py-2.5 bg-black text-white border-none rounded-lg text-sm no-underline cursor-pointer transition-all duration-200 hover:bg-[var(--brand-burgundy)] hover:-translate-y-0.5 hover:shadow-md"
+      className="font-serif px-6 sm:px-8 py-2.5 sm:py-3 bg-[var(--brand-gold)] text-[var(--brand-navy)] border-none rounded-sm text-xs sm:text-sm no-underline cursor-pointer font-semibold tracking-wide uppercase hover:bg-[var(--brand-gold-light)] transition-colors"
     >
       {t('newBooking')}
     </Link>

@@ -16,19 +16,32 @@ export default async function BookingPage() {
 
   return (
     <div>
-      <h2 className="font-serif text-base font-normal text-gray-700 mb-9 leading-relaxed text-center max-w-[600px] mx-auto">
-        {t('description')}
-      </h2>
+      {/* Hero banner */}
+      <section className="relative mb-8 sm:mb-12 h-36 sm:h-48 md:h-56 rounded-sm overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/london-bg.jpg)' }} />
+        <div className="absolute inset-0 bg-[var(--brand-navy)]/75" />
+        <div className="relative z-10 p-5 sm:p-8 md:p-12 flex flex-col justify-end h-full">
+          <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-2 sm:mb-3" />
+          <h1 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">
+            {t('title')}
+          </h1>
+          <p className="text-xs sm:text-sm text-white/70 max-w-[600px]">
+            {t('description')}
+          </p>
+        </div>
+      </section>
 
       <BookingForm />
 
-      <div className="max-w-[700px] mx-auto mt-10 p-6 bg-white border border-gray-200 text-xs text-gray-600 rounded-lg">
-        <h3 className="text-sm font-bold text-gray-900 mb-3 font-serif">
+      {/* Privacy note */}
+      <div className="max-w-[700px] mx-auto mt-8 sm:mt-10 p-4 sm:p-6 bg-white border border-gray-200/80 rounded-sm">
+        <div className="w-6 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
+        <h3 className="text-xs sm:text-sm font-bold text-[var(--brand-navy)] mb-2 sm:mb-3 font-serif">
           {pn('title')}
         </h3>
-        <p className="mb-2.5 leading-relaxed">{pn('p1')}</p>
-        <p className="mb-2.5 leading-relaxed">{pn('p2')}</p>
-        <p className="leading-relaxed">{pn('p3')}</p>
+        <p className="text-[0.65rem] sm:text-xs text-[var(--text-secondary)] mb-2 sm:mb-3 leading-relaxed">{pn('p1')}</p>
+        <p className="text-[0.65rem] sm:text-xs text-[var(--text-secondary)] mb-2 sm:mb-3 leading-relaxed">{pn('p2')}</p>
+        <p className="text-[0.65rem] sm:text-xs text-[var(--text-secondary)] leading-relaxed">{pn('p3')}</p>
       </div>
     </div>
   );

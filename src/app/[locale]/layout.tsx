@@ -40,9 +40,9 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <div className="min-h-screen bg-[var(--bg-stone)]">
+          <div className="min-h-screen bg-[var(--bg-cream)]">
             <Header />
-            <main className="max-w-[1200px] mx-auto px-8 sm:px-12 py-8 relative z-10 overflow-x-hidden">
+            <main className="relative z-10 overflow-x-hidden">
               {children}
             </main>
             <Footer />
