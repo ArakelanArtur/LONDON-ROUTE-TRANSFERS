@@ -10,29 +10,45 @@ export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current!;
-    if (!section) return;
+    const bg = bgRef.current!;
+    if (!section || !bg) return;
 
-    function onMouseMove(e: MouseEvent) {
+    function disableTransition() {
+      if (leaveTimerRef.current) {
+        clearTimeout(leaveTimerRef.current);
+        leaveTimerRef.current = null;
+      }
+      bg.style.transition = 'none';
+    }
+
+    function onMouseLeave() {
+      bg.style.transition = 'transform 400ms ease-out';
+      setOffset({ x: 0, y: 0 });
+      leaveTimerRef.current = setTimeout(() => {
+        if (bg) bg.style.transition = 'none';
+        leaveTimerRef.current = null;
+      }, 400);
+    }
+
+    function onMove(e: MouseEvent) {
       const rect = section.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const px = (e.clientX - cx) / (rect.width / 2);
       const py = (e.clientY - cy) / (rect.height / 2);
+      disableTransition();
       setOffset({ x: px * -16, y: py * -10 });
     }
 
-    function onMouseLeave() {
-      setOffset({ x: 0, y: 0 });
-    }
-
-    section.addEventListener('mousemove', onMouseMove, { passive: true });
+    section.addEventListener('mousemove', onMove, { passive: true });
     section.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
     return () => {
-      section.removeEventListener('mousemove', onMouseMove);
+      section.removeEventListener('mousemove', onMove);
       section.removeEventListener('mouseleave', onMouseLeave);
     };
   }, []);
@@ -40,11 +56,9 @@ export default function Hero() {
   useEffect(() => {
     const bg = bgRef.current;
     if (!bg) return;
-
     rafRef.current = requestAnimationFrame(() => {
       bg.style.transform = `translate(${offset.x}px, ${offset.y}px) scale(1.05)`;
     });
-
     return () => cancelAnimationFrame(rafRef.current);
   }, [offset]);
 
@@ -52,7 +66,7 @@ export default function Hero() {
     <section ref={sectionRef} className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[600px] flex items-end w-full overflow-hidden">
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-cover bg-center will-change-transform transition-transform duration-75 ease-out"
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{ backgroundImage: 'url(/images/london-bg.jpg)' }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-navy)] via-[var(--brand-navy)]/60 to-[var(--brand-navy)]/20" />

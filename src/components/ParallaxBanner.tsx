@@ -12,29 +12,45 @@ export default function ParallaxBanner({ children, className = '', overlay }: Pa
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current!;
-    if (!section) return;
+    const bg = bgRef.current!;
+    if (!section || !bg) return;
 
-    function onMouseMove(e: MouseEvent) {
+    function disableTransition() {
+      if (leaveTimerRef.current) {
+        clearTimeout(leaveTimerRef.current);
+        leaveTimerRef.current = null;
+      }
+      bg.style.transition = 'none';
+    }
+
+    function onMouseLeave() {
+      bg.style.transition = 'transform 400ms ease-out';
+      setOffset({ x: 0, y: 0 });
+      leaveTimerRef.current = setTimeout(() => {
+        if (bg) bg.style.transition = 'none';
+        leaveTimerRef.current = null;
+      }, 400);
+    }
+
+    function onMove(e: MouseEvent) {
       const rect = section.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const px = (e.clientX - cx) / (rect.width / 2);
       const py = (e.clientY - cy) / (rect.height / 2);
+      disableTransition();
       setOffset({ x: px * -16, y: py * -10 });
     }
 
-    function onMouseLeave() {
-      setOffset({ x: 0, y: 0 });
-    }
-
-    section.addEventListener('mousemove', onMouseMove, { passive: true });
+    section.addEventListener('mousemove', onMove, { passive: true });
     section.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
     return () => {
-      section.removeEventListener('mousemove', onMouseMove);
+      section.removeEventListener('mousemove', onMove);
       section.removeEventListener('mouseleave', onMouseLeave);
     };
   }, []);
@@ -49,7 +65,7 @@ export default function ParallaxBanner({ children, className = '', overlay }: Pa
     <section ref={sectionRef} className={`relative overflow-hidden ${className}`}>
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-cover bg-center will-change-transform transition-transform duration-75 ease-out"
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{ backgroundImage: 'url(/images/london-bg.jpg)' }}
       />
       {overlay !== undefined ? (
