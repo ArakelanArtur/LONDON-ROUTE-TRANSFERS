@@ -221,6 +221,7 @@
       "status": "Status",
       "actions": ""
     },
+    "loading": "Loading...",
     "empty": "No bookings found matching your search criteria.",
     "total": "Total bookings",
     "confirmed": "Confirmed",

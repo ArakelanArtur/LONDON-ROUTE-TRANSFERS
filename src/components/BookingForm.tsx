@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { bookingSchema, BookingFormValues } from '@/lib/form-schema';
+import { createBooking } from '@/lib/api';
 
 const defaultValues: BookingFormValues = {
   name: '',
@@ -26,7 +27,8 @@ const defaultValues: BookingFormValues = {
 export default function BookingForm() {
   const t = useTranslations('booking.form');
   const v = useTranslations('booking.validation');
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [serverError, setServerError] = useState('');
 
   const {
     register,
@@ -37,8 +39,29 @@ export default function BookingForm() {
     defaultValues,
   });
 
-  function onSubmit() {
-    setSubmitted(true);
+  async function onSubmit(data: BookingFormValues) {
+    setStatus('submitting');
+    setServerError('');
+    try {
+      await createBooking({
+        name: data.name,
+        company: data.company || undefined,
+        phone: data.phone,
+        email: data.email,
+        service: data.service,
+        pickup: data.pickup,
+        destination: data.destination,
+        date: data.date,
+        time: data.time,
+        passengers: data.passengers,
+        meetAndGreet: data.meetAndGreet || undefined,
+        notes: data.notes || undefined,
+      });
+      setStatus('success');
+    } catch (err) {
+      setServerError(err instanceof Error ? err.message : 'Something went wrong');
+      setStatus('error');
+    }
   }
 
   function getError(field: keyof BookingFormValues) {
@@ -47,7 +70,7 @@ export default function BookingForm() {
     return key ? v(key) : null;
   }
 
-  if (submitted) {
+  if (status === 'success') {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
@@ -71,6 +94,12 @@ export default function BookingForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-[700px] mx-auto bg-white border border-gray-200/80 rounded-sm p-5 sm:p-8 md:p-10" noValidate>
+      {status === 'error' && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-sm text-red-700 text-sm">
+          {serverError}
+        </div>
+      )}
+
       {/* Contact Info */}
       <fieldset className="border-none p-0 mb-8 sm:mb-10">
         <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
@@ -178,10 +207,10 @@ export default function BookingForm() {
 
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || status === 'submitting'}
         className="font-serif w-full px-6 sm:px-10 py-3.5 sm:py-4 bg-[var(--brand-navy)] text-[var(--brand-gold)] border border-[var(--brand-gold)]/40 rounded-sm text-sm sm:text-base cursor-pointer transition-colors hover:bg-[var(--brand-gold)] hover:text-[var(--brand-navy)] disabled:opacity-50"
       >
-        {isSubmitting ? t('sending') : t('submit')}
+        {status === 'submitting' ? t('sending') : t('submit')}
       </button>
     </form>
   );

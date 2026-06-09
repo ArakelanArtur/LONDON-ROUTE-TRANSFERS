@@ -1,6 +1,6 @@
 # LONDON ROUTE TRANSFERS
 
-Сайт транспортной компании с лендингом, формой бронирования и страницей менеджера на mock-данных.
+Сайт транспортной компании с лендингом, формой бронирования и страницей менеджера.
 
 ## Стек
 
@@ -10,18 +10,37 @@
 - **next-intl** (мультиязычность EN/RU)
 - **react-hook-form** + **zod** (форма и валидация)
 - **motion** (анимации)
+- **NestJS** (backend, в `backend/`)
 
 ## Установка и запуск
+
+### Frontend
 
 ```bash
 npm install
 npm run dev
 # Открыть http://localhost:3000
+```
 
-npm run build
-npm run start
+### Backend
 
-npm run lint
+```bash
+cd backend
+npm install
+npm run start:dev
+# Сервер запустится на http://localhost:3001
+```
+
+### Одновременный запуск
+
+Откройте два терминала:
+
+```bash
+# Терминал 1 — backend
+cd backend && npm run start:dev
+
+# Терминал 2 — frontend
+npm run dev
 ```
 
 ## Страницы
@@ -31,7 +50,7 @@ npm run lint
 | `/` | Главная лендинговая страница | Server |
 | `/services` | Типы поездок и преимущества | Server |
 | `/booking` | Форма бронирования | Server + Client (форма) |
-| `/manager` | Таблица бронирований (mock) | Server + Client (таблица) |
+| `/manager` | Таблица бронирований (данные из backend) | Server + Client (таблица) |
 | `/privacy` | Политика конфиденциальности | Server |
 | `/cookie` | Политика cookies | Server |
 | `/terms` | Условия использования | Server |
@@ -59,7 +78,8 @@ src/
 │   ├── Footer.tsx          # Подвал (Server)
 │   ├── LanguageSwitcher.tsx# Переключатель языка (Client)
 │   ├── BookingForm.tsx     # Форма бронирования (Client)
-│   └── BookingTable.tsx    # Таблица бронирований (Client)
+│   ├── BookingTable.tsx    # Таблица бронирований (Client)
+│   └── ...
 ├── i18n/
 │   ├── routing.ts          # Конфиг маршрутизации next-intl
 │   ├── navigation.ts       # Навигационные утилиты
@@ -67,9 +87,26 @@ src/
 ├── lib/
 │   ├── types.ts            # Типы данных
 │   ├── form-schema.ts      # Zod схема валидации
-│   └── mock-data.ts        # Mock-данные бронирований
+│   ├── mock-data.ts        # Mock-данные (не используются)
+│   └── api.ts              # API client для backend
 ├── messages/
 │   ├── en.json             # Английские переводы
 │   └── ru.json             # Русские переводы
 └── middleware.ts           # next-intl middleware
+
+backend/
+├── src/
+│   ├── main.ts             # Точка входа (CORS, ValidationPipe)
+│   ├── app.module.ts       # Корневой модуль
+│   └── bookings/
+│       ├── bookings.module.ts
+│       ├── bookings.controller.ts  # REST endpoints
+│       ├── bookings.service.ts     # Бизнес-логика
+│       ├── dto/
+│       │   ├── create-booking.dto.ts
+│       │   └── update-booking-status.dto.ts
+│       └── interfaces/
+│           └── booking.interface.ts
+├── package.json
+└── tsconfig.json
 ```

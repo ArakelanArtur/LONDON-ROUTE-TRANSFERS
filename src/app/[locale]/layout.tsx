@@ -40,9 +40,9 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <div className="min-h-screen bg-[var(--bg-cream)]">
+          <div className="min-h-screen bg-[var(--bg-cream)] flex flex-col">
             <Header />
-            <main className="relative z-10 overflow-x-hidden">
+            <main className="relative z-10 overflow-x-hidden flex-1">
               {children}
             </main>
             <Footer />
