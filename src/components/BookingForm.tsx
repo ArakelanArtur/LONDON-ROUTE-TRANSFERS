@@ -170,12 +170,26 @@ export default function BookingForm() {
         <div className="flex gap-4 sm:gap-5 mb-4 sm:mb-5 flex-col sm:flex-row">
           <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('date')}
-            <input {...register('date')} type="date" className={inputCls(!!errors.date)} />
+            <div className="relative">
+              <input {...register('date')} type="date" className={`${inputCls(!!errors.date)} [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer`} />
+              <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-[var(--brand-navy)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.5,2h-1.5V.5c0-.276-.224-.5-.5-.5s-.5,.224-.5,.5v1.5H7V.5c0-.276-.224-.5-.5-.5s-.5,.224-.5,.5v1.5h-1.5C2.019,2,0,4.019,0,6.5v13c0,2.481,2.019,4.5,4.5,4.5h4c.276,0,.5-.224,.5-.5s-.224-.5-.5-.5H4.5c-1.93,0-3.5-1.57-3.5-3.5V9H23.5c.276,0,.5-.224,.5-.5v-2c0-2.481-2.019-4.5-4.5-4.5Zm3.5,6H1v-1.5c0-1.93,1.57-3.5,3.5-3.5h15c1.93,0,3.5,1.57,3.5,3.5v1.5Zm-3.268,3.732l-7.707,7.707c-.661,.661-1.025,1.54-1.025,2.475v1.586c0,.276,.224,.5,.5,.5h1.586c.935,0,1.814-.364,2.475-1.025l7.707-7.707c.472-.472,.732-1.1,.732-1.768s-.26-1.296-.732-1.768c-.943-.944-2.592-.944-3.535,0Zm2.828,2.828l-7.707,7.707c-.472,.472-1.1,.732-1.768,.732h-1.086v-1.086c0-.668,.26-1.295,.732-1.768l7.707-7.707c.566-.566,1.555-.566,2.121,0,.283,.283,.439,.66,.439,1.061s-.156,.777-.439,1.061Zm-17.561-1.061c0-.276,.224-.5,.5-.5H14.5c.276,0,.5,.224,.5,.5s-.224,.5-.5,.5H5.5c-.276,0-.5-.224-.5-.5Zm5,5c0,.276-.224,.5-.5,.5H5.5c-.276,0-.5-.224-.5-.5s.224-.5,.5-.5h4c.276,0,.5,.224,.5,.5Z"/>
+                </svg>
+              </div>
+            </div>
             {getError('date') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('date')}</span>}
           </label>
           <label className="flex-1 block text-[0.7rem] sm:text-xs text-[var(--text-secondary)]">
             {t('time')}
-            <input {...register('time')} type="time" className={inputCls(!!errors.time)} />
+            <div className="relative">
+              <input {...register('time')} type="time" className={`${inputCls(!!errors.time)} [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer`} />
+              <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-[var(--brand-navy)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm0,22c-5.514,0-10-4.486-10-10S6.486,2,12,2s10,4.486,10,10-4.486,10-10,10Zm2.5-6.5l-3.5-2.5v-5.5c0-.552-.448-1-1-1s-1,.448-1,1v6c0,.386,.222,.739,.571,.904,.349,.166,.763,.129,1.078-.089l4,3c.185,.139,.404,.209,.624,.209,.253,0,.507-.079,.719-.239,.372-.277,.447-.802,.17-1.175l-1.661-2.609Z"/>
+                </svg>
+              </div>
+            </div>
             {getError('time') && <span className="block text-[0.65rem] sm:text-xs text-[var(--brand-burgundy)] mt-1">{getError('time')}</span>}
           </label>
         </div>

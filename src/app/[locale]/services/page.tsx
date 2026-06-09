@@ -70,12 +70,12 @@ export default async function ServicesPage() {
       <WhyChooseUs />
 
       {/* CTA */}
-      <div className="text-center pb-8 sm:pb-10">
+      <div className="text-center py-12 sm:py-16">
         <Link
           href="/booking"
           className="inline-flex items-center gap-3 px-7 sm:px-10 py-3.5 sm:py-4 bg-[var(--brand-navy)] text-[var(--brand-gold)] rounded-sm text-xs sm:text-sm no-underline font-serif tracking-wide font-semibold uppercase hover:bg-[var(--brand-gold)] hover:text-[var(--brand-navy)] transition-colors"
         >
-          {s('bookCta')} <span className="text-base sm:text-lg">→</span>
+          {s('bookCta')}
         </Link>
       </div>
     </div>
