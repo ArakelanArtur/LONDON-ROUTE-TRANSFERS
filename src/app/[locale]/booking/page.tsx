@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import ParallaxBanner from '@/components/ParallaxBanner';
 import BookingForm from '@/components/BookingForm';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -17,10 +18,8 @@ export default async function BookingPage() {
   return (
     <div>
       {/* Hero banner */}
-      <section className="relative mb-8 sm:mb-12 h-36 sm:h-48 md:h-56 rounded-sm overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/london-bg.jpg)' }} />
-        <div className="absolute inset-0 bg-[var(--brand-navy)]/75" />
-        <div className="relative z-10 p-5 sm:p-8 md:p-12 flex flex-col justify-end h-full">
+      <ParallaxBanner className="mb-8 sm:mb-12 h-36 sm:h-48 md:h-56 rounded-sm">
+        <div className="p-5 sm:p-8 md:p-12 flex flex-col justify-end h-full">
           <div className="w-8 h-0.5 bg-[var(--brand-gold)] mb-2 sm:mb-3" />
           <h1 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">
             {t('title')}
@@ -29,7 +28,7 @@ export default async function BookingPage() {
             {t('description')}
           </p>
         </div>
-      </section>
+      </ParallaxBanner>
 
       <BookingForm />
 

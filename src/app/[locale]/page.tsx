@@ -16,7 +16,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function HomePage() {
-  const h = await getTranslations('home.hero');
   const a = await getTranslations('home.about');
   const s = await getTranslations('home.services');
   const c = await getTranslations('home.clients');
@@ -31,7 +30,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      <Hero t={h} />
+      <Hero />
 
       <QuickBookingForm />
 

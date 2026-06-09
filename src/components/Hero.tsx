@@ -1,19 +1,62 @@
+'use client';
+
+import { useRef, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
-interface HeroProps {
-  t: (key: string) => string;
-}
+export default function Hero() {
+  const t = useTranslations('home.hero');
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>(0);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
 
-export default function Hero({ t }: HeroProps) {
+  useEffect(() => {
+    const section = sectionRef.current!;
+    if (!section) return;
+
+    function onMouseMove(e: MouseEvent) {
+      const rect = section.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const px = (e.clientX - cx) / (rect.width / 2);
+      const py = (e.clientY - cy) / (rect.height / 2);
+      setOffset({ x: px * -16, y: py * -10 });
+    }
+
+    function onMouseLeave() {
+      setOffset({ x: 0, y: 0 });
+    }
+
+    section.addEventListener('mousemove', onMouseMove, { passive: true });
+    section.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+    return () => {
+      section.removeEventListener('mousemove', onMouseMove);
+      section.removeEventListener('mouseleave', onMouseLeave);
+    };
+  }, []);
+
+  useEffect(() => {
+    const bg = bgRef.current;
+    if (!bg) return;
+
+    rafRef.current = requestAnimationFrame(() => {
+      bg.style.transform = `translate(${offset.x}px, ${offset.y}px) scale(1.05)`;
+    });
+
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [offset]);
+
   return (
-    <section className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[600px] flex items-end w-full">
+    <section ref={sectionRef} className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[600px] flex items-end w-full overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        ref={bgRef}
+        className="absolute inset-0 bg-cover bg-center will-change-transform transition-transform duration-75 ease-out"
         style={{ backgroundImage: 'url(/images/london-bg.jpg)' }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-navy)] via-[var(--brand-navy)]/60 to-[var(--brand-navy)]/20" />
       <div className="relative z-10 w-full pb-10 sm:pb-14 pt-20 sm:pt-24 px-5 sm:px-8 md:px-16 lg:px-24">
-        {/* Gold accent line */}
         <div className="w-10 sm:w-16 h-0.5 bg-[var(--brand-gold)] mb-4 sm:mb-6" />
         <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 sm:mb-5 text-white tracking-tight max-w-3xl">
           {t('heading')}
@@ -30,7 +73,7 @@ export default function Hero({ t }: HeroProps) {
         >
           {t('cta')}
         </Link>
-        <p className="text-[0.65rem] sm:text-xs text-white/40 mt-3 sm:mt-4 tracking-wide">{t('underCta')}</p>
+        <p className="text-[0.65rem] sm:text-xs text-white/40 mt-3 sm:mt-4 tracking-wide">{t('underCta')} </p>
       </div>
     </section>
   );

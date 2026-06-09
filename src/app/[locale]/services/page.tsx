@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
+import ParallaxBanner from '@/components/ParallaxBanner';
 import KeyAdvantages from '@/components/KeyAdvantages';
 import WhoWeServe from '@/components/WhoWeServe';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -27,17 +28,15 @@ export default async function ServicesPage() {
   return (
     <div>
       {/* Hero banner */}
-      <section className="relative mb-10 sm:mb-16 h-48 sm:h-64 md:h-80 rounded-sm overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/london-bg.jpg)' }} />
-        <div className="absolute inset-0 bg-[var(--brand-navy)]/70" />
-        <div className="relative z-10 p-6 sm:p-10 md:p-16 flex flex-col justify-end h-full">
+      <ParallaxBanner className="mb-10 sm:mb-16 h-48 sm:h-64 md:h-80 rounded-sm" overlay="bg-[var(--brand-navy)]/70">
+        <div className="p-6 sm:p-10 md:p-16 flex flex-col justify-end h-full">
           <div className="w-8 sm:w-10 h-0.5 bg-[var(--brand-gold)] mb-3 sm:mb-4" />
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-2 sm:mb-3 text-white">
             {s('title')}
           </h1>
           <p className="text-[0.65rem] sm:text-sm text-white/70 uppercase tracking-widest">{s('subtitle')}</p>
         </div>
-      </section>
+      </ParallaxBanner>
 
       {/* Service cards — 2 колонки, карточки уже */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-16 max-w-[900px] mx-auto">
